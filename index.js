@@ -1,6 +1,7 @@
 var fs = require('fs');
 var load = require('./load');
-//var ui = require('ui');
+var search = require('./search');
+var ui = require('./ui');
 
 var dictDir = fs.readdirSync('./data/', 'utf-8')
 
@@ -15,31 +16,31 @@ var displayDicts = function() {
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
-console.log("Welcome to the Node Dictionary Reader!\n\
-======================================\n\
-Enter q to quit\n\n");
+ui.welcome
+displayDicts();
 
-function selectionInterface(){
-	console.log("Select Dictionary to Load:")
-	displayDicts();
+process.stdin.on('data', (str) => {
+	str = str.trim();
+	//need q to quit conditional
+	var selection = parseInt(str)
+	//Validation func
+	if (isNaN(selection) || selection > dictDir.length || selection < 1) {
+		console.error("please enter a number from the selected");
+	} else {
+		selection--;
+		var selectedDictionary = dictDir[str-1];
+		load.loader(selectedDictionary);
+		load.letterCount();
+	} //selected items display 
+		//search prompt
+		console.log(
+		`What kind of search?
+		1: Exact
+		2: Partial
+		3: Begins With
+		4: Ends With`
+		)
+});
 
-	process.stdin.on('data', (str) => {
-		str = str.trim();
-		str = parseInt(str)
-		if (isNaN(str) || str > dictDir.length || str < 1) {
-			console.error("please enter a number from the selected");
-		} else {
-			str--;
-			var selectedDictionary = dictDir[str];
-			load.loader(selectedDictionary);
-			console.log(load.wordCount());
-			load.letterCount();
-		} 
 
 
-	});
-}
-
-
-selectionInterface();
-	
