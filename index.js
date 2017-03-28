@@ -1,4 +1,5 @@
 var fs = require('fs');
+var load = require('load');
 
 var getDicts = function() {
 	return fs.readdirSync('./data/')
@@ -9,7 +10,7 @@ var displayDicts = function() {
 	var dict = getDicts()
 	dict.forEach( (el, index) => {
 		console.log(`${index + 1}. ${el}`);
-	});//break out
+	});
 }
 
 
@@ -22,10 +23,7 @@ Enter q to quit\n\n");
 
 function selectionInterface(){
 	console.log("Select Dictionary to Load:")
-
-	var dirArray = getDicts()
-	console.log(dirArray)
-
+	displayDicts();
 
 	process.stdin.on('data', (str) => {
 		str = str.trim();
