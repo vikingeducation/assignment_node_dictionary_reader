@@ -33,7 +33,8 @@ process.stdin.on('data', (data) => {
     const searchType = search.runSearchType(data);
 
     if (searchType) {
-      
+
     }
   }
 });
+
