@@ -23,7 +23,7 @@ good syntax and semantics so that the features interact with each other well.
 
 -error reporting
   file doesnt exist
-  input invalid (NaN)
+  *input invalid (NaN)
 
 
 -display
@@ -34,6 +34,7 @@ good syntax and semantics so that the features interact with each other well.
 2. Loading 
 -loading dictionary file
   pull dictionary out of dir array
+    -parse json?
   currentDict = readFile on dictionary
 
 -keeping track of dictionary files available for loading
