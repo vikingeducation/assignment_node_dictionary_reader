@@ -28,5 +28,12 @@ process.stdin.on('data', (data) => {
     const dic = new Dictionary(path, fileName);
     cli.printWordCount(dic.wordCount());
     cli.printWordFreq(dic.wordFreq);
+
+    cli.searchPrompt();
+    const searchType = search.runSearchType(data);
+
+    if (searchType) {
+      
+    }
   }
 });
