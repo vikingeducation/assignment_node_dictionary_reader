@@ -3,7 +3,29 @@ const loader = require('./lib/loader');
 const dictionary = require('./lib/dictionary');
 
 
+// Start program
 ui.welcome();
 const dictionaries = loader.findDictionaries();
-ui.chooseDictionary(dictionaries, loader.loadFile);
+ui.displayDictionaries(dictionaries)
 
+// Start interactive part
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', (str) => {
+  str = str.trim();
+
+  if (str === 'q' || str === 'quit') {
+    console.log('Goodbye.');
+    process.exit();
+  }
+
+  let dictionaryName = ui.chooseDictionary(dictionaries, str);
+  if (dictionaryName) {
+  	process.stdin.pause();
+  	let dictionaryObject = loader.loadFile(dictionaryName);
+  } else {
+  	console.log('Please choose a valid dictionary')
+  	ui.displayDictionaries(dictionaries)
+  }
+
+});
