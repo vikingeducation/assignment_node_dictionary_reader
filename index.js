@@ -24,12 +24,27 @@ process.stdin.on('data', (str) => {
 
   if (searchOption) {
     let searchTerm = str;
-    switch (searchOption) {
-      case 1:
-      searcher.exactMatch(dictionary, searchTerm);
-      break;
-      default:
+    if (!(searchTerm == '-back')) {
+      switch (searchOption) {
+        case 1:
+        searcher.exactMatch(dictionary, searchTerm);
+        break;
+        case 2:
+        searcher.partialMatch(dictionary, searchTerm);
+        break;
+        case 3:
+        searcher.beginsWithMatch(dictionary, searchTerm);
+        break;
+        case 4:
+        searcher.endsWithMatch(dictionary, searchTerm);
+        break;
+        default:
+      }
+      console.log("Enter new search statement ('-back' for different search type)");
+    } else {
+      searchOption = false;
     }
+    
   }
 
   if (dictionaryActive && !searchOption) {
@@ -37,7 +52,7 @@ process.stdin.on('data', (str) => {
     if (!isNaN(str) && str < 5 && str > 0) {
       searchOption = str;
       console.log("Type your search term: ")
-    } else {
+    } else if (!(str == '-back')) {
       console.log("Please choose the valid search type. ");
       ui.displaySearchOptions();
     }
