@@ -4,6 +4,8 @@ const dict = require('./lib/dict');
 const searcher = require('./lib/searcher');
 
 let dictionaryActive = false;
+let dictionary;
+let searchOption;
 // Start program
 ui.welcome();
 const dictionaries = loader.findDictionaries();
@@ -20,14 +22,30 @@ process.stdin.on('data', (str) => {
     process.exit();
   }
 
-  if (dictionaryActive) {
-    let searchOption = str;
-    console.log("New input = " + searchOption);
+  if (searchOption) {
+    let searchTerm = str;
+    switch (searchOption) {
+      case 1:
+      searcher.exactMatch(dictionary, searchTerm);
+      break;
+      default:
+    }
+  }
+
+  if (dictionaryActive && !searchOption) {
+    str = parseInt(str);
+    if (!isNaN(str) && str < 5 && str > 0) {
+      searchOption = str;
+      console.log("Type your search term: ")
+    } else {
+      console.log("Please choose the valid search type. ");
+      ui.displaySearchOptions();
+    }
   }
 
   let dictionaryName = ui.chooseDictionary(dictionaries, str);
   if (!dictionaryActive && dictionaryName) {
-    let dictionary = loader.loadFile(dictionaryName);
+    dictionary = loader.loadFile(dictionaryName);
     dict.displayStats(dictionary);
     dictionaryActive = true;
     ui.displaySearchOptions();
