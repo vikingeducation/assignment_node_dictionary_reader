@@ -1,6 +1,6 @@
 const ui = require('./lib/ui');
 const loader = require('./lib/loader');
-const dictionary = require('./lib/dictionary');
+const dict = require('./lib/dict');
 
 
 // Start program
@@ -22,10 +22,12 @@ process.stdin.on('data', (str) => {
   let dictionaryName = ui.chooseDictionary(dictionaries, str);
   if (dictionaryName) {
   	process.stdin.pause();
-  	let dictionaryObject = loader.loadFile(dictionaryName);
+  	let dictionary = loader.loadFile(dictionaryName);
+    dict.displayStats(dictionary);
   } else {
   	console.log('Please choose a valid dictionary')
   	ui.displayDictionaries(dictionaries)
   }
+
 
 });
