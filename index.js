@@ -1,8 +1,8 @@
 var fs = require('fs');
-var load = require('load');
+var load = require('./load');
 
 var getDicts = function() {
-	return fs.readdirSync('./data/')
+	return fs.readdirSync('./data/', 'utf-8')
 
 }
 
@@ -24,6 +24,8 @@ Enter q to quit\n\n");
 function selectionInterface(){
 	console.log("Select Dictionary to Load:")
 	displayDicts();
+	load.loader('dictionary.json');
+	console.log(load.wordCount())
 
 	process.stdin.on('data', (str) => {
 		str = str.trim();

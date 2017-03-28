@@ -1,18 +1,27 @@
 var fs = require('fs')
 
+var data;
+
 var loadDict = {
-	
+  
 	loader: function(filename){
 	  var path = `./data/${filename}`;
-	  fs.readFileSync(path, 'utf8', (err, data) => {
-	    if (err) throw err;
-	    return data 
-	  }),
-	  dictionary: 
+	  data = JSON.parse(fs.readFileSync(path, 'utf-8'))
+  },
+
+  getData: function() {
+    return data
+  },
+
+  wordCount: function() {
+    return Object.keys(data).length
+  }
 
 
 
-}
+};
+
+
 
 
 module.exports = loadDict;
