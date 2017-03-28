@@ -1,5 +1,7 @@
 var fs = require('fs');
 var load = require('./load');
+//var ui = require('ui');
+
 var dictDir = fs.readdirSync('./data/', 'utf-8')
 
 
@@ -20,18 +22,19 @@ Enter q to quit\n\n");
 function selectionInterface(){
 	console.log("Select Dictionary to Load:")
 	displayDicts();
-	load.loader('dictionary.json');
-	console.log(load.wordCount())
 
 	process.stdin.on('data', (str) => {
 		str = str.trim();
 		str = parseInt(str)
-		if (isNaN(str)) {
-			console.error("please enter a number from the selected dictionary")
-			//call to menu
-		} //else if (str < dict.length || str === 0) {
-
-		//} 
+		if (isNaN(str) || str > dictDir.length || str < 1) {
+			console.error("please enter a number from the selected");
+		} else {
+			str--;
+			var selectedDictionary = dictDir[str];
+			load.loader(selectedDictionary);
+			console.log(load.wordCount());
+			load.letterCount();
+		} 
 
 
 	});
