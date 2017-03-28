@@ -1,14 +1,10 @@
 var fs = require('fs');
 var load = require('./load');
+var dictDir = fs.readdirSync('./data/', 'utf-8')
 
-var getDicts = function() {
-	return fs.readdirSync('./data/', 'utf-8')
-
-}
 
 var displayDicts = function() {
-	var dict = getDicts()
-	dict.forEach( (el, index) => {
+	dictDir.forEach( (el, index) => {
 		console.log(`${index + 1}. ${el}`);
 	});
 }
