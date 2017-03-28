@@ -2,8 +2,13 @@ let CLIModule = require('./lib/CLIModule');
 let cli = new CLIModule;
 let loader = require('./lib/loader');
 
-let fileList = loader.getJSON('./data');
-cli.listFiles(fileList);
+let fileList;
+
+cli.intro();
+loader.getJSON('./data').then(function(f){
+  fileList  = f;
+  cli.listFiles(fileList);
+})
 
 
 process.stdin.resume();
@@ -14,9 +19,9 @@ process.stdin.on('data', (data) => {
   if (data === 'q') {
     process.exit();
   } else {
-
+    cli.handleFileSelection(data, fileList)
   }
 });
 
-//console.log(cli.intro());
+//
 
