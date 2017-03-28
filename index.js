@@ -1,9 +1,9 @@
-const ui = require('ui');
-const loader = require('loader');
+const ui = require('./lib/ui');
+const loader = require('./lib/loader');
 
 
 
-ui.startProgram
+ui.welcome();
 const dictionaries = loader.findDictionaries();
 ui.chooseDictionary(dictionaries);
-dict.loadFile
+// dict.loadFile
