@@ -1,4 +1,5 @@
 const loader = require('../lib/loader');
+const cli = require('../lib/cliModule');
 
 const welcomeState = {
 
