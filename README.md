@@ -1,3 +1,5 @@
+Dave Hail
+Mark Hahn
 # assignment_node_dictionary_reader
 I CAN HAS SPELLZ IN "Node"? K THNX BYE
 
@@ -13,8 +15,8 @@ good syntax and semantics so that the features interact with each other well.
 
 1. CLI User Interface
 -user prompting
-  with - stdin
-  using - prompt #. dictionary
+  *with - stdin
+  *using - prompt #. dictionary
 
 -accepting input
   accept input as call to dictionary(store in var)
@@ -25,8 +27,7 @@ good syntax and semantics so that the features interact with each other well.
 
 
 -display
-  display json files directory
-    dir array =fs.readdir
+  *display json files directory
 
 
 

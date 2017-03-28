@@ -13,8 +13,8 @@ function selectionInterface(){
 	fs.readdir('./data/', (err, dir) => {
 		if(err) throw err;
 		dict = dir;
-		dict.forEach( (el) => {
-			console.log(`1. ${el}`);
+		dict.forEach( (el, index) => {
+			console.log(`${index + 1}. ${el}`);
 		});
 	});
 
