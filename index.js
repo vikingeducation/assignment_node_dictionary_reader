@@ -21,9 +21,9 @@ process.stdin.on('data', (str) => {
 
   let dictionaryName = ui.chooseDictionary(dictionaries, str);
   if (dictionaryName) {
-  	process.stdin.pause();
   	let dictionary = loader.loadFile(dictionaryName);
     dict.displayStats(dictionary);
+    ui.displaySearchOptions();
   } else {
   	console.log('Please choose a valid dictionary')
   	ui.displayDictionaries(dictionaries)
