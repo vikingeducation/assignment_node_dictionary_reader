@@ -4,7 +4,8 @@ var search = require('./search');
 var ui = require('./ui');
 
 var dictDir = fs.readdirSync('./data/', 'utf-8')
-
+var selectedDictionary;
+var searchSelection;
 
 var displayDicts = function() {
 	dictDir.forEach( (el, index) => {
@@ -27,24 +28,22 @@ var onDataMenu = function (str) {
 		console.error("please enter a number from the selected");
 	} else {
 		selection--;
-		var selectedDictionary = dictDir[selection];
+		selectedDictionary = dictDir[selection];
 		load.loader(selectedDictionary);
 		load.letterCount();
 		process.stdin.removeListener('data', onDataMenu);
-		// process.stdin.removeListener('data',(err) => {
-		// 	if (err) throw err;
-		// });
 	} //selected items display
 }
+
 
 process.stdin.on('data', onDataMenu);
 
 var onDataSearch = function (str) {
 	str = str.trim();
-	//need q to quit conditional
+
 	var selection = parseInt(str)
-	//Validation func
-	if (isNaN(selection) || selection > dictDir.length || selection < 1) {
+	
+	if (isNaN(selection) || selection > 4 || selection < 1) {
 		console.error("please enter a number from the selected");
 	} else {
 		console.log(
@@ -54,6 +53,23 @@ var onDataSearch = function (str) {
 		3: Begins With
 		4: Ends With`
 		)
-	} //selected items display
+		searchSelection = selection;
+		process.stdin.removeListener('data', onDataSearch);
+	}
+
 }
 process.stdin.on('data', onDataSearch);
+
+var onSearchInput = function (str) {
+	console.log(selectedDictionary);
+	str = str.trim();
+
+	console.log("Enter the search term here:");
+	search[searchSelection](selectedDictionary, str);
+}
+
+process.stdin.on('data', onSearchInput);
+
+
+
+

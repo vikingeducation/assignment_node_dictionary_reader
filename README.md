@@ -1,5 +1,6 @@
 Dave Hail
 Mark Hahn
+Deven Bhatt
 # assignment_node_dictionary_reader
 I CAN HAS SPELLZ IN "Node"? K THNX BYE
 
@@ -19,10 +20,10 @@ good syntax and semantics so that the features interact with each other well.
   *using - prompt #. dictionary
 
 -accepting input
-  accept input as call to dictionary(store in var)
+  *accept input as call to dictionary(store in var)
 
 -error reporting
-  file doesnt exist
+  *file doesnt exist
   *input invalid (NaN)
 
 
@@ -32,13 +33,13 @@ good syntax and semantics so that the features interact with each other well.
 
 
 2. Loading 
--loading dictionary file
-  pull dictionary out of dir array
-    -parse json?
-  currentDict = readFile on dictionary
+*-loading dictionary file
+ * pull dictionary out of dir array
+  *  -parse json?
+  *currentDict = readFile on dictionary
 
--keeping track of dictionary files available for loading
-  with dir array
+*-keeping track of dictionary files available for loading
+ * with dir array
 
 
 3. Saving
@@ -49,6 +50,25 @@ good syntax and semantics so that the features interact with each other well.
     if file exists, overwrite?
     if not append
     exit
+
+alphabet = {
+a:,
+b:,
+c:
+}
+
+words = {
+alligator:
+aardvark:
+apple:
+}
+
+loop
+alphabet[0] = alphabet[0] + 1
+
+
+
+
 
 -avoid overwriting the default dictionary.json (loaded dict)
   Saving regex to its own object
