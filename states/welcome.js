@@ -1,6 +1,9 @@
 const loader = require('../lib/loader');
 
 const welcomeState = {
+
+  fileList: loader.getJSONFiles('./data'),
+
   header: `
 Welcome to the Node Dictionary Reader!
 ======================================
@@ -9,34 +12,35 @@ Enter q to quit
 
   prompt: () => {
     console.log(welcomeState.header);
-    let fileList = welcomeState.getFiles()
 
     return(`
-    Select a dictionary to load:
-    ${fileList}
+Select a dictionary to load:
+${welcomeState.listFiles(welcomeState.fileList)}
     `);
   },
 
-  getFiles: () => {
-    let fileList;
-    loader.getJSON('./data').then( (files ) => {
-      fileList = files;
-      return fileList;
+  listFiles: (fileArray) => {
+    let string = "";
+    fileArray.forEach( (fileName, index) => {
+      string += `${index + 1}. ${fileName}\n`;
     })
+    return string;
+  },
+
+  isValid: (data) => {
+    data = parseInt(data) - 1;
+    return Number.isInteger(data) && welcomeState.fileList[data];
+  },
+
+  error: () => {
+    return 'Invalid entry. Enter a number in the list.';
+  },
+
+  transition: (data) => {
+    cli.render('stats', data);
   }
 };
 
 module.exports = (data) => {
-  return welcomeState
+  return welcomeState;
 };
-
-//   listFiles: (fileArray) => {
-//     fileArray.forEach( (fileName, index) => {
-//       console.log(`${index + 1}. ${fileName}`);
-//     })
-//   },
-
-// loader.getJSON(path).then( (files) => {
-//   fileList = files;
-//   cli.listFiles(fileList);
-// });
