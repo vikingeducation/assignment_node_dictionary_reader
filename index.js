@@ -19,7 +19,8 @@ process.stdin.on('data', (data) => {
   if (data === 'q') {
     process.exit();
   } else {
-    cli.handleFileSelection(data, fileList)
+    cli.handleInput(data, cli.chooseFile, fileList);
+    console.log('got here');
   }
 });
 
