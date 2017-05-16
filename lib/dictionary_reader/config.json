@@ -1,0 +1,9 @@
+{
+  "welcome": {
+    "msg1": "Welcome to the Node Dictionary Reader!",
+    "msg2": "======================================",
+    "msg3": "Enter q to quit",
+    "msg4": "\n",
+    "msg5": "Select a dictionary to load:"
+  }
+}
