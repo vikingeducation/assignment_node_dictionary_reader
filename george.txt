@@ -1,0 +1,108 @@
+{
+
+"apostle": "A brief letter dimissory sent by a court appealed from to thesuperior court, stating the case, etc.; a paper sent up on appeals inthe admiralty courts. Wharton. Burrill. Apostles' creed, a creed ofunknown origin, which was formerly ascribed to the apostles. Itcertainly dates back to the beginning of the sixth century, and someassert that it can be found in the writings of Ambrose in the fourthcentury.-- Apostle spoon (Antiq.), a spoon of silver, with the handleterminating in the figure of an apostle. One or more were offered bysponsors at baptism as a present to the godchild. B. Jonson.",
+
+"battle": "Fertile. See Battel, a. [Obs.]",
+
+"beetle": "Any insect of the order Coleoptera, having four wings, theouter pair being stiff cases for covering the others when they arefolded up. See Coleoptera. Beetle mite (Zoöl.), one of many speciesof mites, of the family Oribatidæ, parasitic on beetles.-- Black beetle, the common large black cockroach (Blattaorientalis).",
+
+"belittle": "To make little or less in a moral sense; to speak of in adepreciatory or contemptuous way. T. Jefferson.",
+
+"bluebottle": "A plant (Centaurea cyanus) which grows in grain fields. Itreceives its name from its blue bottle-shaped flowers.",
+
+"bottle": "To put into bottles; to inclose in, or as in, a bottle orbottles; to keep or restrain as in a bottle; as, to bottle wine orporter; to bottle up one's wrath.",
+
+"bristle": "A stiff, sharp, roundish hair. Gray.",
+
+"brittle": "Easily broken; apt to break; fragile; not tough or tenacious.Farewell, thou pretty, brittle piece Of fine-cut crystal. Cotton.Brittle silver ore, the mineral stephanite.",
+
+"bustle": "To move noisily; to be rudely active; to move in a way to causeagitation or disturbance; as, to bustle through a crowd.And leave the world for me to bustle in. Shak.",
+
+"cantle": "To cut in pieces; to cut out from. [Obs.] [Written alsocantile.]",
+
+"castle": "To move the castle to the square next to king, and then theking around the castle to the square next beyond it, for the purposeof covering the king.",
+
+"cattle": "Quadrupeds of the Bovine family; sometimes, also, including alldomestic quadrupeds, as sheep, goats, horses, mules, asses, andswine. Belted cattle, Black cattle. See under Belted, Black.-- Cattle guard, a trench under a railroad track and alongside acrossing (as of a public highway). It is intended to prevent cattlefrom getting upon the track.-- cattle louse (Zoöl.), any species of louse infecting cattle.There are several species. The Hæmatatopinus eurysternus and H.vituli are common species which suck blood; Trichodectes scalariseats the hair.-- Cattle plague, the rinderpest; called also Russian cattle plague.-- Cattle range, or Cattle run, an open space through which cattlemay run or range. [U. S.] Bartlett.-- Cattle show, an exhibition of domestic animals with prizes forthe encouragement of stock breeding; -- usually accompanied with theexhibition of other agricultural and domestic products and ofimplements.",
+
+"chortle": "A word coined by Lewis Carroll (Charles L. Dodgson), andusually explained as a combination of chuckle and snort. [Humorous]",
+
+"disgruntle": "To dissatisfy; to disaffect; to anger. [Colloq.]",
+
+"embattle": "To arrange in order of battle; to array for battle; also, toprepare or arm for battle; to equip as for battle.One in bright arms embattled full strong. Spenser.Here once the embattled farmers stood And fired the shot heard roundthe world. Emerson.",
+
+"epistle": "One of the letters in the New Testament which were addressed totheir Christian brethren by Apostles. Epistle side, the right side ofan altar or church to a person looking from the nave toward thechancel.One sees the pulpit on the epistle side. R. Browning.",
+
+"fettle": "1. To repair; to prepare; to put in order. [Prov. Eng.]Carlyle.",
+
+"gentle": "A dipterous larva used as fish bait.",
+
+"gristle": "Cartilage. See Cartilage. Bacon.",
+
+"hustle": "To shake together in confusion; to push, jostle, or crowdrudely; to handle roughly; as, to hustle a person out of a room.Macaulay.",
+
+"jostle": "To run against and shake; to push out of the way; to elbow; tohustle; to disturb by crowding; to crowd against. \"Bullies jostledhim.\" Macaulay.Systems of movement, physical, intellectual, and moral, which areperpetually jostling each other. I. Taylor.",
+
+"kettle": "A metallic vessel, with a wide mouth, often without a cover,used for heating and boiling water or other liguids. Kettle pins,ninepins; skittles. [Obs.] Shelton.-- Kettle stitch (Bookbinding), the stitch made in sewing at thehead and tail of a book. Knight.",
+
+"kirtle": "A garment varying in form and use at different times, and worndoth by men and women.Wearing her Norman car, and her kirtle of blue. Longfellow.",
+
+"little": "In a small quantity or degree; not much; slightly; somewhat; --often with a preceding it. \" The poor sleep little.\" Otway.",
+
+"mantle": "Same as Mantling.",
+
+"mettle": "Substance or quality of temperament; spirit, esp. as regardshonor, courage, fortitude, ardor, etc.; disposition; -- usually in agood sense.A certain critical hour which shall... try what mettle his heart ismade of. South.Gentlemen of brave mettle. Shak.The winged courser, like a generous horse, Shows most true mettlewhen you check his course. Pope.To put one one's mettle, to cause or incite one to use one's bestefforts.",
+
+"mistitle": "To call by a wrong title.",
+
+"mottle": "To mark with spots of different color, or shades of color, asif stained; to spot; to maculate.",
+
+"myrtle": "A species of the genus Myrtus, especially Myrtus communis. Thecommon myrtle has a shrubby, upright stem, eight or ten feet high.Its branches form a close, full head, thickly covered with ovate orlanceolate evergreen leaves. It has solitary axillary white or rosyflowers, followed by black several-seeded berries. The ancientsconsidered it sacred to Venus. The flowers, leaves, and berries areused variously in perfumery and as a condiment, and the beautifullymottled wood is used in turning.",
+
+"nestle": "To house, as in a nest.",
+
+"nettle": "A plant of the genus Urtica, covered with minute sharp hairscontaining a poison that produces a stinging sensation. Urticagracitis is common in the Northern, and U. chamædryoides in theSouthern, United States. the common European species, U. urens and U.dioica, are also found in the Eastern united States. U. pilulifera isthe Roman nettle of England.",
+
+"pestle": "To pound, pulverize, bray, or mix with a pestle, or as with apestle; to use a pestle.",
+
+"prattle": "To talk much and idly; to prate; hence, to talk lightly andartlessly, like a child; to utter child's talk.",
+
+"rattle": "Any organ of an animal having a structure adapted to produce aratting sound.",
+
+"resettle": "To settle again. Swift.",
+
+"rustle": "To cause to rustle; as, the wind rustles the leaves.",
+
+"scuttle": "To run with affected precipitation; to hurry; to bustle; toscuddle.With the first dawn of day, old Janet was scuttling about the houseto wake the baron. Sir W. Scott.",
+
+"shuttle": "To move backwards and forwards, like a shuttle.I had to fly far and wide, shutting athwart the big Babel, whereverhis calls and pauses had to be. Carlyle.",
+
+"spittle": "See Spital. [Obs.] B. Jonson.",
+
+"startle": "To move suddenly, or be excited, on feeling alarm; to start.Why shrinks the soul Back on herself, and startles at destructionAddison.",
+
+"supersubtle": "To subtle. Shak.",
+
+"tattle": "Idle talk or chat; trifling talk; prate.[They] told the tattle of the day. Swift.",
+
+"teakettle": "A kettle in which water is boiled for making tea, coffee, etc.",
+
+"thistle": "Any one of several prickly composite plants, especially thoseof the genera Cnicus, Craduus, and Onopordon. The name is often alsoapplied to other prickly plants. Blessed thistle, Carduus benedictus,so named because it was formerly considered an antidote to the biteof venomous creatures.-- Bull thistle, Cnicus lanceolatus, the common large thistle ofneglected pastures.-- Canada thistle, Cnicus arvensis, a native of Europe, butintroduced into the United States from Canada.-- Cotton thistle, Onopordon Acanthium.-- Fuller's thistle, the teasel.-- Globe thistle, Melon thistle, etc. See under Globe, Melon, etc.-- Pine thistle, Atractylis gummifera, a native of the Mediterraneanregion. A vicid gum resin flows from the involucre.-- Scotch thistle, either the cotton thistle, or the musk thistle,or the spear thistle; -- all used national emblems of Scotland.-- Sow thistle, Sonchus oleraceus.-- Spear thistle. Same as Bull thistle.-- Star thistle, a species of Centaurea. See Centaurea.-- Torch thistle, a candelabra-shaped plant of the genus Cereus. SeeCereus.-- Yellow thistle, Cincus horridulus. Thistle bird (Zoöl.), theAmerican goldfinch, or yellow-bird (Spinus tristis); -- so called onaccount of its feeding on the seeds of thistles. See Illust. underGoldfinch.-- Thistle butterfly (Zoöl.), a handsomely colored Americanbutterfly (Vanessa cardui) whose larva feeds upon thistles; -- calledalso painted lady.-- Thistle cock (Zoöl.), the corn bunting (Emberiza militaria).[Prov. Eng.] -- Thistle crown, a gold coin of England of the reign ofJames I., worth four shillings.-- Thistle finch (Zoöl.), the goldfinch; -- so called from itsfondness for thistle seeds. [Prov. Eng.] -- Thistle funnel, a funnelhaving a bulging body and flaring mouth.",
+
+"throttle": "The throttle valve. Throttle lever (Steam Engine), the handlever by which a throttle valve is moved, especially in a locomotive.-- Throttle valve (Steam Engine), a valve moved by hand or by agovernor for regulating the supply of steam to the steam chest. Inone form it consists of a disk turning on a transverse axis.",
+
+"title": "The panel for the name, between the bands of the back of abook.",
+
+"tittle": "A particle; a minute part; a jot; an iota.It is easier for heaven and earth to pass, than one tittle of the lawto fail. Luke xvi. 17.Every tittle of this prophecy is most exactly verified. South.",
+
+"tootle": "To toot gently, repeatedly, or continuously, on a windinstrument, as a flute; also, to make a similar noise by any means.\"The tootling robin.\"  John Clare.",
+
+"turtle": "The turtledove.",
+
+"ungentle": "Not gentle; lacking good breeding or delicacy; harsh.Vicious, ungentle, foolish, blunt, unkind. Shak.That ungentle flavor which distinguishes nearly all our native anduncultivated grapes. Hawthorne.-- Un*gen\"tle*ness, n.-- Un*gen\"tly, adv.",
+
+"unsettle": "To move or loosen from a settled position or state; to unfix;to displace; to disorder; to confuse.",
+
+"whittle": "A knife; esp., a pocket, sheath, or clasp knife. \"A butcher'swhittle.\" Dryden. \"Rude whittles.\" Macaulay.He wore a Sheffield whittle in his hose. Betterton.",
+
+"wrestle": "To wrestle with; to seek to throw down as in wrestling."
+}
