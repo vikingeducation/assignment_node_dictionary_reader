@@ -1,9 +1,37 @@
 {
   "welcome": {
-    "msg1": "Welcome to the Node Dictionary Reader!",
-    "msg2": "======================================",
-    "msg3": "Enter q to quit",
-    "msg4": "\n",
-    "msg5": "Select a dictionary to load:"
+    "intro": "Welcome to the Node Dictionary Reader!",
+    "separator": "======================================",
+    "directions": "Enter q to quit\n",
+    "prompt": "Select a dictionary to load:"
+  },
+
+  "search": {
+    "prompt": "\n\nWhat kind of search would you like to make?",
+    "exact": "1: Exact",
+    "partial": "2: Partial",
+    "beginsWith": "3: Begins With",
+    "endsWith": "4: Ends With" 
+  },
+
+  "enterSearchTerm": {
+    "prompt": "\nEnter the search term:"
+  },
+
+  "askToSave": {
+    "prompt": "\n\nDo you want to save your results? Type 'y' or 'n'. Enter 'q' to quit."
+  },
+
+  "askForFilePath": {
+    "prompt": "\nWhat filepath would you like to write results to?"
+  },
+
+  "overwrite": {
+    "prompt": "\nThis file already exists! Would you like to overwrite? Type 'y' or 'n'. Enter 'q' to quit."
+  },
+
+  "writeFile": {
+    "msg": "Your file has been saved.\n\n",
+    "lineBreak": "-------------------------------------------------------"
   }
 }
