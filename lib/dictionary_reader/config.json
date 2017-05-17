@@ -12,7 +12,7 @@
     "partial": "2: Partial",
     "beginsWith": "3: Begins With",
     "endsWith": "4: Ends With",
-    "game": "game: Play the definition game using this library!"
+    "game": "game: Play the definition game using this library!\n"
   },
 
   "enterSearchTerm": {
@@ -46,7 +46,7 @@
 
   "definitionGameMain": {
     "decorate": "=========================================",
-    "options": "\nWhich of following words is defined by the above? Please enter the word fully."
+    "options": "\nWhich of following words is defined by the above? Please enter the word or number."
   }, 
 
   "definitionGameResult": {
