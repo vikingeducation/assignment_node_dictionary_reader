@@ -37,7 +37,6 @@
   },
 
   "definitionGameStart": {
-    "clearScreen": "\n\n\n\n\n\n\n\n\n",
     "title": "Welcome to the definition game!\n",
     "instructions": "Below you will be given a definition of a random word, followed by 5 words. One of these words is the defined word. Can you guess which one it is? If you make 3 mistakes, the game is over!",
     "quit": "Type q at any time to quit.",
@@ -46,7 +45,7 @@
   },
 
   "definitionGameMain": {
-    "decorate": "======================================",
+    "decorate": "=========================================",
     "options": "\nWhich of following words is defined by the above? Please enter the word fully."
   }, 
 
