@@ -8,7 +8,7 @@ let selectedDictionaryFile;
 
 let showJsonFiles = function () {
 
-    fs.readdir(path, (err, data) => {
+    fs.readdir('./data', (err, data) => {
         if (err) throw err;
 
         jsonFiles = data.filter((elem, index) => {
@@ -23,6 +23,8 @@ let showJsonFiles = function () {
 
 
 let selectFile = function (selectedIndex) {
+    
+
     if(selectedIndex > jsonFiles.length || selectedIndex < 1)
         return 'err';
     else{ 

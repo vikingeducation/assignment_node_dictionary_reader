@@ -1,7 +1,13 @@
+const fs = require('fs');
 let loading = require('./loading');
-let Search = require('./searching.js');
+let Search = require('./searching');
+let Save = require('./saving');
+
+
 let searchOption;
 let selectedFile;
+let userPath;
+let results = [];
 
 let resumeInput = function (func) {
     process.stdin.resume();
@@ -32,6 +38,16 @@ const searchOptionMessage = () => {
 
 }
 
+const saveSearchMessage = () => {
+    console.log('\nDo You want to save results? y/n? "\q" quits');
+}
+
+const fileWriteMessage = () => {
+    console.log('\nWhat filepath should we write results to?');
+}
+
+
+
 let loadFileData = (data) => {
     data = data.trim();
     selectedFile = loading.selectFile(data);
@@ -41,7 +57,7 @@ let loadFileData = (data) => {
     if (isNaN(data)) {
         console.log(`${data} is not a valid number - Please enter a number representing the selectiong above`);
     }
-    
+
     if (selectedFile == 'err') {
         console.log('Pick a number within the range\n');
     }
@@ -84,7 +100,6 @@ let searchTerm = (data) => {
     data = data.trim();
 
     const search = new Search(selectedFile);
-    let results = [];
 
     if (data === '\\q') {
         console.log('Goodbye');
@@ -113,17 +128,75 @@ let searchTerm = (data) => {
         results.forEach(elem => {
             console.log(`${elem}\n`)
         });
-        
+        pauseInput(searchTerm);
+        saveSearchMessage();
+        resumeInput(saveSearchResults)
     }
 }
 
-let saveSearchResults = (data) {
+let saveSearchResults = (data) => {
     data = data.trim();
+    if (data === '\\q' || data === 'n') {
+        console.log('Goodbye');
+        process.exit();
+    }
+
+    if (data === 'y') {
+        //call next input
+        pauseInput(saveSearchResults);
+        fileWriteMessage();
+        resumeInput(writeResultsToFile);
+    }
+    else {
+        console.log(`Incorrect input: ${data}`);
+    }
+}
+
+let writeResultsToFile = (data) => {
+
+
+    data = data.trim();
+    if (data === '\\q') {
+        console.log('Goodbye');
+        process.exit();
+    }
+
+    userPath = `./data/${data}`
+
+    if (fs.existsSync(userPath)) {
+        console.log('\nThat file exists, overwrite? y/n? "q" quits.')
+        pauseInput(writeResultsToFile);
+        resumeInput(overwriteFile);
+    }
+    else {
+        Save.writeToFile(userPath, results);
+    }
 
 
 }
 
-showPrompt();
-//call the loading module to show files
-loading.showJsonFiles();
-resumeInput(loadFileData);
+let overwriteFile = (data) => {
+    data = data.trim();
+    if (data === '\\q' || data === 'n') {
+        console.log('Goodbye');
+        process.exit();
+    }
+
+    if (data === 'y') {
+        Save.writeToFile(userPath, results);
+    }
+    else {
+        console.log(`Incorrect input: ${data}`);
+    }
+}
+
+let init = () => {
+    showPrompt();
+    //call the loading module to show files
+    loading.showJsonFiles();
+    resumeInput(loadFileData);
+}
+
+module.exports = {
+    init: init
+}
