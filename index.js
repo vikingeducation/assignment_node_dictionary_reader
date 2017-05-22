@@ -1,1 +1,3 @@
-console.log("Hello, dictionary reader!");
+var Dictionary = require('./lib/dictionary-ui');
+
+Dictionary.init();
