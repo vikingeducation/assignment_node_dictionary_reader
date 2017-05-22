@@ -4,6 +4,7 @@ const dictionaryData = require('./dictionary_data.js');
 const regex = /json/i;
 const path = '../data'
 let jsonFiles;
+let selectedDictionaryFile;
 
 let showJsonFiles = function () {
 
@@ -21,14 +22,14 @@ let showJsonFiles = function () {
 
 
 
-let selectedFile = function (selectedIndex) {
+let selectFile = function (selectedIndex) {
     if(selectedIndex > jsonFiles.length || selectedIndex < 1)
-        return false;
+        return 'err';
     else{ 
-        let selectedDictionaryFile = require(`${path}/${jsonFiles[selectedIndex-1]}`);
+        selectedDictionaryFile = require(`${path}/${jsonFiles[selectedIndex-1]}`);
         console.log(`Successfully loaded: ${jsonFiles[selectedIndex-1]}`);
         displayStats(selectedDictionaryFile);
-        return true;        
+        return selectedDictionaryFile;        
     }
 }
 
@@ -42,11 +43,12 @@ let displayStats = function(file) {
   for(item in letterFrequency){
       console.log(`${item}: ${letterFrequency[item]} `);
   }
+  console.log("\n");
 }
 
 
 
 module.exports ={
     showJsonFiles: showJsonFiles,
-    selectedFile: selectedFile
+    selectFile: selectFile,
 }
