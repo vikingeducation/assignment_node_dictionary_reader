@@ -1,3 +1,3 @@
-var Dictionary = require('./lib/dictionary-ui');
+var dictionary = require('./lib/dictionary-ui');
 
-Dictionary.init();
+dictionary.init();
