@@ -1,6 +1,7 @@
 var ui = require('./ui');
 var loader = require('./loader');
 var processer = require('./processer')
+var searcher = require('./searcher')
 
 function init() {
   ui.init();
@@ -16,6 +17,7 @@ function gameLoop(userText) {
     ui.success(foundDict);
     var dictObj = loader.loadDict(foundDict);
     var stats = processer.processInput(dictObj);
+
     ui.reportStats(stats);
   } else {
     ui.noFind();
