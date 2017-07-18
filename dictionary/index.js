@@ -2,6 +2,9 @@ let userInterface = require('./lib/cli_user_interface');
 let loader = require('./lib/loading');
 
 
-userInterface.showMessage();
+userInterface.introMessage();
 userInterface.quit();
-loader.loading();
+
+loader.loading().then((data) => {
+	userInterface.displayDictionaries(data);
+})
