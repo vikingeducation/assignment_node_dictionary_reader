@@ -60,7 +60,20 @@ module.exports = {
 				msg: 'Enter a filename: ',
 				nl: false
 			});
-		}
+		},
+		fileExists: () => {
+			_showMessage({
+				msg: "File exists already, overwrite?",
+				nl: false
+			});
+		},
+
+		fileSaved: () => {
+			_showMessage({
+				msg: 'Successfully saved file'
+			});
+		},
+
 	},
 	input: {
 		query: dataHandler => {

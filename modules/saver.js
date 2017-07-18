@@ -9,10 +9,11 @@ const SAVER = {
 		return new Promise((resolve, reject) => {
 			// Attempt to read the file, if it throws an error
 			// it does not exist? Maybe?
-			fs.readFile(filename, err => {
+			fs.readFile(filename, (err, data) => {
 				if (err) {
 					resolve(filename);
 				} else {
+					console.log(data)
 					reject(filename);
 				}
 			});

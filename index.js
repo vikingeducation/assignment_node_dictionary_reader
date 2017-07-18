@@ -95,12 +95,15 @@ function handleAskForSave(answer) {
 	if (answer === 'y') {
 		ui.prompt.askForSaveFileName();
 		ui.input.query(handleSave);
+		process.stdin.removeListener('data', handleAskForSave);
 	} else if (answer === 'n') {
 		// Return to menu?
 	} else {
 		// Invalid answer
 		ui.prompt.askToSaveResults();
 	}
+	
+		process.stdin.removeListener('data', handleAskForSave);
 }
 
 function handleSave(filename) {
@@ -108,18 +111,34 @@ function handleSave(filename) {
 
 	// Attempt to read the file, if it throws an error
 	// it does not exist? Maybe?
-	saver.check(filename).then(saver.save, handleFileExists).then(result => {
-		if (typeof result === 'function') {
+	saver.check(filename).then(handleFileExists, saver.save).catch(handleFileSaved);
+}
+
+function handleFileSaved () {
+	if (typeof result === 'function') {
 			// An error occurred.
 			throw result;
 		}
 
 		// Success
-		console.log('Successfully saved file');
-	});
+		ui.prompt.fileSaved();
 }
 
-function handleFileExists(filename) {}
+function handleFileExists(filename) {
+	ui.prompt.fileExists();
+	ui.input.query( answer => {
+		answer = answer.trim().toLowerCase();
+		if (answer === 'y') {
+			saver.save(filename).then(handleFileSaved);
+		} else if (answer === 'n') {
+		// Return to menu?
+		} else {
+		// Invalid answer
+			ui.prompt.askToSaveResults();
+		}
+	});
+	
+};
 
 function _validateSelection(selection, max) {
 	selection = +selection;
