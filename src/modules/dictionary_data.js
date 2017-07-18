@@ -35,16 +35,19 @@ var searchExact = function(searchWord){
 }
 var searchPartial = function(searchData){
   //var reg = new RegExp("(" + searchData + ")", "i");
-  var reg = /(food)/i;
+  var reg = /oo/g;
   console.log(reg);
   var keys = Object.keys(thisdictionary);
   var matches = [];
   keys = keys.join(' ')
-  var match = reg.exec(keys);
-  while (match) {
-    matches.push(match);
-  }
-  return matches;
+
+  var match = keys.match(reg);
+  // while (match) {
+  //   matches.push(match);
+  //   match = reg.exec(keys);
+  // }
+
+  return match;
 }
 
 
