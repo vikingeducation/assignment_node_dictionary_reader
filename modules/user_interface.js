@@ -33,7 +33,15 @@ module.exports = {
 						msg: letter.toUpperCase() + ': ' + statsObj.letterFrequency[letter]
 					});
 				}
+				console.log();
 			}
+		},
+		searchWelcome: () => {
+			_showMessage({
+				msg: 'You can now search this dictionary, muahahah\n' +
+					'============================================\n' +
+					'Search type:\n'
+			});
 		}
 	},
 	input: {
@@ -45,8 +53,8 @@ module.exports = {
 	},
 	//error_reporting: ,
 	display: {
-		listFiles: files => {
-			files.forEach((el, idx) => {
+		list: list => {
+			list.forEach((el, idx) => {
 				console.log(`${idx + 1}: ${el}`);
 			});
 		}
