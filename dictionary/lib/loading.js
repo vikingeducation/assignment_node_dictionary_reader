@@ -24,20 +24,28 @@ function loading() {
   });
 }
 
+// /^[^:]+:\s*/gm - for colons
 function parseFile(dictionary){
   let path = `./data/${dictionary}`
   let readStream = fs.createReadStream(path, 'utf8');
-  let numBytes = 0;
-  readStream.on('data', (data) => {
-    numBytes += data.length;
-    console.log(data);
-  })
-  readStream.on('end', () => {
-    console.log(numBytes);
-    console.log('Successfully loaded: dictionary.json');
 
-  })
+  let contents = '';
+  
+  readStream.on('data', (data) => {
+    contents += data;
+  });
+
+  readStream.on('end', () => {
+    let dictionary = JSON.parse(contents);
+    let numberOfWords = Object.keys(dictionary).length;
+
+    console.log('Successfully loaded: dictionary.json');
+    console.log(`Word count: ${numberOfWords}`);
+    console.log('Word frequency by starting letter:');
+
+  });
 }
+
 
 
 module.exports = {
