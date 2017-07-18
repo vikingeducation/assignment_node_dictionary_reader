@@ -6,20 +6,39 @@ function exactMatch(input, dictionary){
 };
 
 function partialMatch(input, dictionary) {
-	let str = Object.keys(dictionary).join(' ');
-	let reggie = new RegExp("/(" + input + ")/g");
 
-	console.log(reggie);
+  regex = new RegExp(input)
+	let keys = Object.keys(dictionary);
 
-	var matches = [];
-	var match = reggie.exec(str);
+  const matches = [];
+  for (let i = 0; i < keys.length; i++) {
+    const word = keys[i];
+    if (regex.test(word)) {
+      matches.push(word);
+    }
+  }
 
-	while(match) {
-	  matches.push(match);
-	  match = reggie.exec(str);
-	}
 
-	console.log(matches);
+  console.log(matches);
+
+
+	// let reggie = new RegExp(input, 'g');
+  //
+  // // let pattern = `/${input}/g`
+  //
+	// var matches = [];
+	// var match = reggie.exec(str);
+  // // console.log(match);
+	// while(match) {
+	//   matches.push(match);
+	//   match = reggie.exec(str);
+	// }
+  //
+  // // var re = new RegExp(pattern, 'gi');
+  // // // var result = [];
+  // // // result.push(re.test(str));
+  // // console.log(re.exec(str));
+
 }
 
 module.exports = {
