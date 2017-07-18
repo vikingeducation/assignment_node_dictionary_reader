@@ -22,15 +22,19 @@ function displayDictionaries(dictionaries) {
 	}
 }
 
-function selectDict(index) {
+function selectDict(dictionaries) {
+  let keys = Object.keys(dictionaries)
 	let userIn = "";
 
 	process.stdin.on("data", (data) => {
 		data = data.trim();
-
-		if (data === "1") {
-			console.log('hit!');
-		}
+		if (keys.indexOf(data) > -1) {
+      let dict = dictionaries[data];
+      loader.parseFile(dict)
+      // searching(dictionaries)
+		} else {
+      console.log('not one of the options')
+    }
 	})
 }
 
@@ -51,5 +55,6 @@ function quit() {
 module.exports = {
 	introMessage: introMessage,
   quit: quit,
-  displayDictionaries: displayDictionaries
+  displayDictionaries: displayDictionaries,
+  selectDict: selectDict
 }
