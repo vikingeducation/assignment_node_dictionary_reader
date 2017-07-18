@@ -43,9 +43,12 @@ function parseFile(dictionary, allowMessage){
         console.log('Successfully loaded: dictionary.json');
         console.log(`Word count: ${numberOfWords}`);
         console.log('Word frequency by starting letter:');
+        
+        let tracker = firstLetterCount(dictionary);
+        logLetterCount(tracker);
       }
-      let tracker = firstLetterCount(dictionary);
-      logLetterCount(tracker);
+
+      
       resolve(dictionary);
     });
   })
@@ -84,7 +87,7 @@ function firstLetterCount(dictionary){
       tracker[letter]++
     }
   }
-  return tracker
+  return tracker;
 }
 
 function logLetterCount(tracker){

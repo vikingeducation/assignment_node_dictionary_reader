@@ -35,10 +35,8 @@ function selectDict(dictionaries) {
     if (keys.indexOf(data) > -1) {
       let dict = dictionaries[data];
       dictionaryChoice = dict;
-      console.log(dictionaryChoice)
-      loader.parseFile(dict, true).then((data) =>{
-        console.log('done')
-      });
+
+      loader.parseFile(dict, true);
 
       process.stdin.removeListener('data', onData);
     }
@@ -58,14 +56,18 @@ function selectSearchType() {
 
     let onSearchOptionsInput = (data) => {
       data = data.trim();
-      console.log(data);
 
       if (chosenOption === '1'){
-        console.log(dictionaryChoice)
         let dictionary = loader.parseFile(dictionaryChoice, false).then((dictionary)=> {
-          searcher.exactMatch(data, dictionary)
+          searcher.exactMatch(data, dictionary);
+        })
+
+      } else if (chosenOption === '2') {
+      	let dictionary = loader.parseFile(dictionaryChoice, false).then((dictionary)=> {
+          searcher.partialMatch(data, dictionary);
         })
       }
+
     }
 
     let onChosenData = (data) => {
@@ -74,6 +76,12 @@ function selectSearchType() {
     	if (data === '1') {
         chosenOption = data
         console.log('enter a search term');
+        process.stdin.removeListener('data', onChosenData);
+        process.stdin.on('data', onSearchOptionsInput);
+
+    	} else if (data === '2') {
+   			chosenOption = data;
+    		console.log('enter a search term');
         process.stdin.removeListener('data', onChosenData);
         process.stdin.on('data', onSearchOptionsInput);
     	}
