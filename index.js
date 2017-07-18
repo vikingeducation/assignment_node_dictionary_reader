@@ -1,0 +1,1 @@
+const  dictionary = require('./modules/dictionary_reader.js')
