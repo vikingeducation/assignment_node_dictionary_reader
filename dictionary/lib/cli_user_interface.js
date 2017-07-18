@@ -66,6 +66,16 @@ function selectSearchType() {
       	let dictionary = loader.parseFile(dictionaryChoice, false).then((dictionary)=> {
           searcher.partialMatch(data, dictionary);
         })
+
+      } else if (chosenOption === '3') {
+      	let dictionary = loader.parseFile(dictionaryChoice, false).then((dictionary)=> {
+          searcher.startsWithMatch(data, dictionary);
+        })
+
+      } else if (chosenOption === '4') {
+      	let dictionary = loader.parseFile(dictionaryChoice, false).then((dictionary)=> {
+          searcher.endsWithMatch(data, dictionary);
+        })
       }
 
     }
@@ -81,6 +91,18 @@ function selectSearchType() {
 
     	} else if (data === '2') {
    			chosenOption = data;
+    		console.log('enter a search term');
+        process.stdin.removeListener('data', onChosenData);
+        process.stdin.on('data', onSearchOptionsInput);
+
+    	} else if (data === '3') {
+    		chosenOption = data;
+    		console.log('enter a search term');
+        process.stdin.removeListener('data', onChosenData);
+        process.stdin.on('data', onSearchOptionsInput);
+
+    	} else if (data === '4') {
+    		chosenOption = data;
     		console.log('enter a search term');
         process.stdin.removeListener('data', onChosenData);
         process.stdin.on('data', onSearchOptionsInput);

@@ -6,11 +6,11 @@ function exactMatch(input, dictionary){
 };
 
 function partialMatch(input, dictionary) {
-
-  regex = new RegExp(input)
+  let regex = new RegExp(input)
 	let keys = Object.keys(dictionary);
 
   const matches = [];
+
   for (let i = 0; i < keys.length; i++) {
     const word = keys[i];
     if (regex.test(word)) {
@@ -18,30 +18,61 @@ function partialMatch(input, dictionary) {
     }
   }
 
+  // error handling todo
 
-  console.log(matches);
+  for (let j = 0; j < matches.length; j++) {
+  	console.log(matches[j]);
+  }
+}
 
+function startsWithMatch(input, dictionary) {
+	let regex = new RegExp('^' + input);
+	let keys = Object.keys(dictionary);
 
-	// let reggie = new RegExp(input, 'g');
-  //
-  // // let pattern = `/${input}/g`
-  //
-	// var matches = [];
-	// var match = reggie.exec(str);
-  // // console.log(match);
-	// while(match) {
-	//   matches.push(match);
-	//   match = reggie.exec(str);
-	// }
-  //
-  // // var re = new RegExp(pattern, 'gi');
-  // // // var result = [];
-  // // // result.push(re.test(str));
-  // // console.log(re.exec(str));
+	const matches = [];
 
+	keys.forEach((word) => {
+		if (regex.test(word)) {
+			matches.push(word)
+		}
+	});
+
+	matches.forEach((word) => {
+		console.log(word);
+	});
+}
+
+function endsWithMatch(input, dictionary) {
+
+	let regex = new RegExp(input + '$', 'm');
+	console.log(regex)
+	let keys = Object.keys(dictionary);
+
+	const matches = [];
+
+	keys.forEach((word) => {
+		if (regex.test(word)) {
+			matches.push(word)
+		}
+	});
+
+	matches.forEach((word) => {
+		console.log(word);
+	});
 }
 
 module.exports = {
 	exactMatch: exactMatch,
-	partialMatch: partialMatch
+	partialMatch: partialMatch,
+	startsWithMatch: startsWithMatch,
+	endsWithMatch: endsWithMatch
 }
+
+
+
+
+
+
+
+
+
