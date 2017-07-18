@@ -38,24 +38,33 @@ var FindDictionary = function (str){
 
 var letterFrequency = function(dict) {
   var letterFrequencyObj = {
-    "a": 0,
-    "b": 0,
-    "c": 0
+
   }
-  for(i=0;i<Object.keys(dict).length;i++) {
-    var word = dict[i];
-    var firstLetter = word[0].toString();
-    if (firstLetter === undefined) {
-      letterFrequencyObj[dict[i]] = 1;
+var dictword = Object.keys(dict);
+  for(i=0; i<dictword.length; i++) {
+
+    var word = dictword[i];
+    var firstLetter = word[0];
+
+    if (letterFrequencyObj[firstLetter] === undefined) {
+      letterFrequencyObj[firstLetter] = 1;
     }
     else {
-      letterFrequencyObj.firstLetter += 1;
+        letterFrequencyObj[firstLetter] += 1;
+      }
+      //console.log(word + firstLetter + letterFrequencyObj);
     }
-    console.log(word + firstLetter + letterFrequencyObj);
+    //console.log(letterFrequencyObj["a"] + "where is this");
+DisplayWordCount(letterFrequencyObj);
+    return letterFrequencyObj;
   }
-
-  return letterFrequencyObj;
+var DisplayWordCount = function(wordCount){
+  for (var k in wordCount) {
+       if (wordCount.hasOwnProperty(k)) {
+          console.log(wordCount[k] + " words with " + k );
+       }
 }
 
+}
 
 module.exports = { "FindDictionary": FindDictionary}
