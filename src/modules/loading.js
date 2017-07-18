@@ -1,4 +1,5 @@
 const dictionary = require('../../data/dictionary.json');
+const dictData = require('./dictionary_data')
 const cli = require('./cli_interface');
 var selectedDictionary;
 
@@ -13,7 +14,7 @@ var FindDictionary = function (str){
     console.log("Sucessfully loaded your dictionary!");
    var selectedDictionary = dictionary;
    console.log("Word count: " + Object.keys(selectedDictionary).length);
-   letterFrequency(selectedDictionary);
+   dictData.letterFrequency(selectedDictionary);
    return true;
   }
   else {
@@ -22,32 +23,6 @@ var FindDictionary = function (str){
   }
 }
 
-var letterFrequency = function(dict) {
-  var letterFrequencyObj = {
-  }
-var dictword = Object.keys(dict);
-  for(i=0; i<dictword.length; i++) {
-    var word = dictword[i];
-    var firstLetter = word[0];
-
-    if (letterFrequencyObj[firstLetter] === undefined) {
-      letterFrequencyObj[firstLetter] = 1;
-    }
-    else {
-        letterFrequencyObj[firstLetter] += 1;
-      }
-    }
-DisplayWordCount(letterFrequencyObj);
-    return letterFrequencyObj;
-}
-
-var DisplayWordCount = function(wordCount){
-  for (var k in wordCount) {
-      if (wordCount.hasOwnProperty(k)) {
-        console.log(wordCount[k] + " words with " + k );
-      }
-  }
-}
 
 module.exports =
 { "FindDictionary": FindDictionary,

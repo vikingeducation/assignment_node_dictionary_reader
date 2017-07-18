@@ -12,8 +12,17 @@ var StateOne = function(){
     }
   process.stdin.on('data', onData);
 }
-var StateTwo = function() {
-
+var StateTwo = function(){
+  process.stdin.resume();
+  process.stdin.setEncoding("utf8");
+  //tell them to search!
+    var onData = (data) => {
+      if(different function != false){
+        process.stdin.removeListener('data', onData);
+           return StateThree();
+       }
+    }
+  process.stdin.on('data', onData);
 }
 
 
