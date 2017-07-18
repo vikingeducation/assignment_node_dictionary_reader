@@ -2,18 +2,23 @@
 
 const fs = require('fs');
 
-const DATA_FOLDER = '../data/'
+const DATA_FOLDER = './data/';
 
 module.exports = {
-  track: 
-  scan: () => {
-    fs.readdir(DATA_FOLDER, (err, data) => {
-      if (err) {
-        throw err;
-      }
-      return data.filter( element => element.endsWith('.json')) ;
-    });
+	//track:
+	scan: () => {
+		return new Promise((resolve, reject) => {
+			fs.readdir(DATA_FOLDER, (err, data) => {
+				if (err) {
+					reject(err);
+				}
+				if (data === undefined) {
+					reject(Error('Folder is empty.'));
+				}
 
-  }
-
-}
+				// If we get here, success.
+				resolve(data.filter(element => element.endsWith('.json')));
+			});
+		});
+	}
+};
