@@ -3,8 +3,6 @@ var thisdictionary;
 var SetData = function(setDict)
 {
 thisdictionary = setDict;
-
-console.log(thisdictionary["a"]);
 }
 var letterFrequency = function(dict) {
   var letterFrequencyObj = {
@@ -32,5 +30,22 @@ var DisplayWordCount = function(wordCount){
       }
   }
 }
+var searchExact = function(searchWord){
+  return thisdictionary[searchWord];
+}
+var searchPartial = function(searchData){
+  //var reg = new RegExp("(" + searchData + ")", "i");
+  var reg = /(food)/i;
+  console.log(reg);
+  var keys = Object.keys(thisdictionary);
+  var matches = [];
+  keys = keys.join(' ')
+  var match = reg.exec(keys);
+  while (match) {
+    matches.push(match);
+  }
+  return matches;
+}
 
-module.exports = {"letterFrequency": letterFrequency,"SetData": SetData,"thisdictionary": thisdictionary}
+
+module.exports = {"letterFrequency": letterFrequency,"SetData": SetData,"thisdictionary": thisdictionary, "searchExact": searchExact, "searchPartial": searchPartial}

@@ -1,4 +1,4 @@
-const dict = require('./dictionary_data');
+const dict = require('./dictionary_data.js');
 
 var whatSearch = function() {
   console.log("What type of search would you like to perform? Options are: Exact, Partial, Begins with, Ends with");
@@ -30,10 +30,10 @@ var searchNow = function(searchData){
   searchData = searchData.trim();
   switch(searchType) {
     case 0:
-      searchExact(searchData);
+      console.log(dict.searchExact(searchData));
     break;
     case 1:
-
+      console.log(dict.searchPartial(searchData));
     break;
     case 2:
 
@@ -46,11 +46,6 @@ var searchNow = function(searchData){
   console.log("what would you like to search?");
   return true;
 }
-var searchExact = function(searchWord){
-
-return dict.thisdictionary[searchWord]
-}
-
 
 
 module.exports = { "searchType": searchType,  "searchNow": searchNow, "whatSearch": whatSearch}
