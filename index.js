@@ -9,17 +9,17 @@ const loader = dictionary.loader;
 const searcher = dictionary.searcher;
 const saver = dictionary.saver;
 
-// First welcome the user.
-ui.prompt.welcome();
-
 // Now load the dictionary and scan for json files.
-loader.scan().then(handleScan);
+loader.scan().then(mainMenu);
 
-function handleScan(result) {
+function mainMenu(result) {
 	if (typeof result === 'function') {
 		// We got an error.
 		throw result;
 	}
+
+	// First welcome the user.
+	ui.prompt.welcome();
 
 	// If we make it here, we got some files.
 	ui.display.list(result);
@@ -83,11 +83,15 @@ function handleSearchType(selection) {
 function handleSearch(searchString) {
 	searchString = searchString.trim().toLowerCase();
 	saver.results = searcher.search.execute(searchString, loader.entries);
-	ui.display.list(saver.results);
-	ui.prompt.askToSaveResults();
+	ui.display.list(saver.results, true);
 
+	if (saver.results.length === 0) {
+		mainMenu(loader.track);
+	} else {
+		ui.prompt.askToSaveResults();
+		ui.input.query(handleAskForSave);
+	}
 	process.stdin.removeListener('data', handleSearch);
-	ui.input.query(handleAskForSave);
 }
 
 function handleAskForSave(answer) {
@@ -95,15 +99,14 @@ function handleAskForSave(answer) {
 	if (answer === 'y') {
 		ui.prompt.askForSaveFileName();
 		ui.input.query(handleSave);
-		process.stdin.removeListener('data', handleAskForSave);
 	} else if (answer === 'n') {
-		// Return to menu?
+		mainMenu(loader.track);
 	} else {
 		// Invalid answer
 		ui.prompt.askToSaveResults();
 	}
-	
-		process.stdin.removeListener('data', handleAskForSave);
+
+	process.stdin.removeListener('data', handleAskForSave);
 }
 
 function handleSave(filename) {
@@ -111,34 +114,41 @@ function handleSave(filename) {
 
 	// Attempt to read the file, if it throws an error
 	// it does not exist? Maybe?
-	saver.check(filename).then(handleFileExists, saver.save).catch(handleFileSaved);
+	saver
+		.check(filename)
+		.then(handleFileExists, saver.save)
+		.catch(handleFileSaved);
+
+	process.stdin.removeListener('data', handleSave);
 }
 
-function handleFileSaved () {
+function handleFileSaved() {
 	if (typeof result === 'function') {
-			// An error occurred.
-			throw result;
-		}
+		// An error occurred.
+		throw result;
+	}
 
-		// Success
-		ui.prompt.fileSaved();
+	// Success
+	ui.prompt.fileSaved();
 }
 
 function handleFileExists(filename) {
 	ui.prompt.fileExists();
-	ui.input.query( answer => {
+	ui.input.query(handleAnswer);
+
+	function handleAnswer(answer) {
 		answer = answer.trim().toLowerCase();
 		if (answer === 'y') {
 			saver.save(filename).then(handleFileSaved);
 		} else if (answer === 'n') {
-		// Return to menu?
+			mainMenu(loader.track);
 		} else {
-		// Invalid answer
+			// Invalid answer
 			ui.prompt.askToSaveResults();
 		}
-	});
-	
-};
+		process.stdin.removeListener(this);
+	}
+}
 
 function _validateSelection(selection, max) {
 	selection = +selection;

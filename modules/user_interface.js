@@ -4,7 +4,7 @@ module.exports = {
 	prompt: {
 		welcome: () => {
 			_showMessage({
-				msg: "Welcome to Andrew & Ed's dictionary reader!\n" +
+				msg: "\nWelcome to Andrew & Ed's dictionary reader!\n" +
 					"Select a dictionary to use, type 'q' to quit\n" +
 					'============================================\n'
 			});
@@ -63,7 +63,7 @@ module.exports = {
 		},
 		fileExists: () => {
 			_showMessage({
-				msg: "File exists already, overwrite?",
+				msg: 'File exists already, overwrite?',
 				nl: false
 			});
 		},
@@ -72,8 +72,7 @@ module.exports = {
 			_showMessage({
 				msg: 'Successfully saved file'
 			});
-		},
-
+		}
 	},
 	input: {
 		query: dataHandler => {
@@ -84,8 +83,10 @@ module.exports = {
 	},
 	//error_reporting: ,
 	display: {
-		list: items => {
-			console.log(`\nFound ${items.length} result(s)`);
+		list: (items, title) => {
+			if (title !== undefined) {
+				console.log(`\nFound ${items.length} result(s)`);
+			}
 			items.forEach((el, idx) => {
 				if (typeof el === 'object') {
 					console.log(`> ${el.word}:  ${el.def}`);
