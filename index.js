@@ -35,8 +35,17 @@ function scanHandler(result) {
 
 		// Valid selection.
 		process.stdin.pause();
-		loader.init(selection);
+		loader.init(selection).then(initHandler);
+
 	});
+}
+
+function initHandler (result) {
+	if (typeof result === 'function') {
+		// We got an error.
+		throw result;
+	}
+	
 }
 
 /*

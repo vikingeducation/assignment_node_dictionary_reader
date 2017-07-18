@@ -14,7 +14,15 @@ module.exports = {
 				msg: 'Please select your choice: ',
 				nl: false
 			});
+		},
+		showStats: (selectedDictionary, entries) => {
+			_showMessage({
+				msg: "Successfully loaded" + selectedDictionary
+				wordCount: 
+			})
 		}
+
+
 	},
 	input: {
 		query: dataHandler => {
@@ -31,6 +39,8 @@ module.exports = {
 			});
 		}
 	}
+
+
 };
 
 // Inline function to handle
