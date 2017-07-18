@@ -2,8 +2,10 @@
 
 const SEARCHER = {
 	search_menu: ['Exacty', 'Partial', 'Begins With', 'Ends With'],
+  searchType: 0
+  setSearchType: 
 	search: {
-		Exact: () => {},
+		Exact: (searchString, entries) => entries[Object.keys(entries).find((el) => el === searchString)],
 		Partial: () => {},
 		'Begins With': () => {},
 		'Ends With': () => {}

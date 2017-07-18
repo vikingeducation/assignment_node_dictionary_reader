@@ -33,8 +33,8 @@ module.exports = {
 						msg: letter.toUpperCase() + ': ' + statsObj.letterFrequency[letter]
 					});
 				}
-				console.log();
 			}
+			console.log();
 		},
 		searchWelcome: () => {
 			_showMessage({
@@ -42,7 +42,14 @@ module.exports = {
 					'============================================\n' +
 					'Search type:\n'
 			});
-		}
+		},
+		askForSearchString: () => {
+			_showMessage ({msg: "Please enter the string to search for: ", nl: false});
+
+
+		},
+
+
 	},
 	input: {
 		query: dataHandler => {

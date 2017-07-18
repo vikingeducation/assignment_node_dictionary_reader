@@ -33,7 +33,7 @@ function handleSelect(selection) {
 	_validateSelection(selection, loader.track.length);
 
 	// Valid selection.
-	process.stdin.pause();
+	process.stdin.removeListener('data', handleSelect);
 	loader.init(selection).then(handleInit);
 }
 
@@ -58,12 +58,10 @@ function handleInit(result) {
 	// Getting the search type.
 	ui.input.query(handleSearchType);
 
-	console.log('Invalid choice, please try again.\n');
+	/*console.log('Invalid choice, please try again.\n');
 	ui.display.list(result);
 	ui.prompt.ask_for_choice();
-
-	// Getting the search string.
-	ui.input.query(handleSearch);
+ */
 }
 
 function handleSearchType(selection) {
@@ -71,14 +69,17 @@ function handleSearchType(selection) {
 
 	// Make sure we have a valid choice.
 	_validateSelection(selection, searcher.search_menu.length);
-
-	process.stdin.pause();
+	searcher.setSearchType = 
+	ui.prompt.askForSearchString();
+	// Getting the search string.
+	process.stdin.removeListener('data', handleSearchType);
+	ui.input.query(handleSearch);
 }
 
 function handleSearch(searchString) {
 	searchString = searchString.trim().toLowerCase();
-
-	process.stdin.pause();
+	searcher.search.
+	process.stdin.removeListener('data', handleSearch);
 }
 
 function _validateSelection(selection, max) {
