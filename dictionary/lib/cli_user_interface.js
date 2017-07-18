@@ -17,14 +17,15 @@ function quit() {
 	process.stdin.on("data", (data) => {
 		data = data.trim();
 
-		if (data === "quit") {
-			
+		if (data === "q") {
+      console.log('quitting');
+			process.stdin.pause();
 		}
 	})
 }
 
 
 module.exports = {
-	showMessage: showMessage
+	showMessage: showMessage,
+  quit: quit
 }
-
