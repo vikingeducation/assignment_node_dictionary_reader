@@ -75,32 +75,45 @@ function two() {
     } else {
 
       // All other input is invalid
-      showMessage(`Invalid: ${ data }`);
+      console.log(`Invalid: ${ data }`);
     }
   };
 
   // Set the listener
   process.stdin.on('data', onData);
-  }
+}
 
 function three() {
   console.log('three');
+  // Start listening to STDIN
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
 
+  // Inline function to handle
+  // message output
+
+  // Display message
+
+  // Handler for STDIN data
+  // event
   var onData = (data) => {
-    console.log('here')
     data = data.trim();
 
+    // If user input "next"
+    // let's go to the next
+    // state
     if (data === 'next') {
-      console.log('Goodbye')
-      process.stdin.removeListener('data', onData)
-      process.stdin.exit();
+      process.stdin.pause();
+      process.stdin.removeListener('data', onData);
+      console.log("EXIT?")
 
     } else {
-      showMessage(`Invalid: ${ data }`);
-    }
 
+      // All other input is invalid
+      console.log(`Invalid: ${ data }`);
+    }
   };
 
+  // Set the listener
+  process.stdin.on('data', onData);
 }
