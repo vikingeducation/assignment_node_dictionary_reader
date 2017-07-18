@@ -19,7 +19,7 @@ const SEARCHER = {
 		Partial: (searchString, entries) => {
 			let definitions = [];
 			for (var key in entries) {
-				if (!hasOwnProperty(key) && key.includes(searchString)) {
+				if (!entries.hasOwnProperty(key) && key.includes(searchString)) {
 					console.log(key);
 					definitions[key] = entries[key];
 				}
