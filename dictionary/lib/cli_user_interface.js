@@ -1,4 +1,5 @@
 let loader = require('./loading');
+let searcher = require('./searching');
 
 process.stdin.resume();
 process.stdin.setEncoding("utf8");
@@ -17,65 +18,79 @@ function introMessage(err) {
 };
 
 function displayDictionaries(dictionaries) {
-	for (index in dictionaries) {
-		console.log(`${index}. ${dictionaries[index]}`);
-	}
+  for (index in dictionaries) {
+    console.log(`${index}. ${dictionaries[index]}`);
+  }
 }
 
 function selectDict(dictionaries) {
   let keys = Object.keys(dictionaries)
-	let userIn = "";
+  let userIn = "";
 
-	process.stdin.on("data", (data) => {
-		data = data.trim();
-		if (keys.indexOf(data) > -1) {
+  let onData = (data) => {
+    data = data.trim();
+
+    if (keys.indexOf(data) > -1) {
       let dict = dictionaries[data];
-      loader.parseFile(dict)
-      // process.stdin.pause();
+      loader.parseFile(dict);
 
-		} else {
-      console.log('not one of the options')
+      process.stdin.removeListener('data', onData);
     }
-	})
-}
-
-function selectSearchType() {
-  process.stdin.resume();
-  let searchOptions = {
-    1: 'Exact',
-    2: 'Partial',
-    3: 'Begins With',
-    4: 'Ends With'
   }
-	process.stdin.on("data", (data) => {
-		data = data.trim();
-		if (data === 'search'){
-      console.log('What kind of search?');
-      for (let option in searchOptions){
-        console.log(`${option}: ${searchOptions[option]}`);
-      }
+
+   process.stdin.on('data', onData);
+  }
+
+  function selectSearchType() {
+    let searchOptions = {
+      1: 'Exact',
+      2: 'Partial',
+      3: 'Begins With',
+      4: 'Ends With'
     }
-  })
-}
 
-function quit() {
-	let userIn = "";
+    let onChosenData = (data) => {
+    	data = data.trim();
 
-	process.stdin.on("data", (data) => {
-		data = data.trim();
+    	if (data === '1') {
 
-		if (data === "q") {
-      console.log('quitting');
-			process.stdin.pause();
-		}
-	})
-}
+    		console.log("yay")
+    	}
+    }
+
+    let onSelectData = (data) => {
+    	data = data.trim();
+      if (data === 'search') {
+        console.log('What kind of search?');
+        for (let option in searchOptions) {
+          console.log(`${option}: ${searchOptions[option]}`);
+        }
+        process.stdin.removeListener('data', onSelectData);
+        process.stdin.on('data', onChosenData);
+      } 
+    }
+
+    process.stdin.on('data', onSelectData); 
+  }
+
+  function quit() {
+    let userIn = "";
+
+    process.stdin.on("data", (data) => {
+      data = data.trim();
+
+      if (data === "q" || data === 'quit') {
+        console.log('quitting');
+        process.stdin.pause();
+      }
+    })
+  }
 
 
-module.exports = {
-	introMessage: introMessage,
-  quit: quit,
-  displayDictionaries: displayDictionaries,
-  selectDict: selectDict,
-  selectSearchType: selectSearchType
-}
+  module.exports = {
+    introMessage: introMessage,
+    quit: quit,
+    displayDictionaries: displayDictionaries,
+    selectDict: selectDict,
+    selectSearchType: selectSearchType
+  }

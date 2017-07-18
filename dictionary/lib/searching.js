@@ -4,4 +4,6 @@ function exactMatch(input, dictionary){
   return dictionary[input];
 };
 
-function
+module.exports = {
+	exactMatch: exactMatch
+}
