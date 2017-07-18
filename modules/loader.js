@@ -5,7 +5,7 @@ const fs = require('fs');
 const DATA_FOLDER = './data/';
 
 module.exports = {
-	//track:
+	track: [],
 	scan: () => {
 		return new Promise((resolve, reject) => {
 			fs.readdir(DATA_FOLDER, (err, data) => {
@@ -17,8 +17,11 @@ module.exports = {
 				}
 
 				// If we get here, success.
-				resolve(data.filter(element => element.endsWith('.json')));
+				module.exports.track = data.filter(element => element.endsWith('.json'));
+				
+				resolve(module.exports.track);
 			});
 		});
 	}
 };
+//(element => element.endsWith('.json'))

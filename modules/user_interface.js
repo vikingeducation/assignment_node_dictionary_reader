@@ -2,14 +2,31 @@
 
 module.exports = {
 	prompt: {
-		welcome: () =>
+		welcome: () => {
 			_showMessage({
 				msg: "Welcome to Andrew & Ed's dictionary reader!\n" +
 					"Select a dictionary to use, type 'q' to quit\n" +
 					'============================================\n'
 			})
+		},
+		ask_for_choice: () => {
+			_showMessage({
+				msg: "Please select your choice:",
+				nl: 0
+			})
+		} 
+
+
+
 	},
-	//acceptance: ,
+	input: {
+		query: (dataHandler) => {
+			process.stdin.resume();
+			process.stdin.setEncoding('utf8');
+			process.stdin.on('data', dataHandler);
+
+		}
+	},
 	//error_reporting: ,
 	display: {
 		listFiles: files => {
@@ -24,7 +41,10 @@ module.exports = {
 // message output
 function _showMessage(msgObj) {
 	if (msgObj.msg !== undefined) {
-		console.log(msgObj.msg);
+		if (msgObj.nl === undefined) {
+			msgObj.msg += "\n"
+		}
+		process.stdout.write(msgObj.msg, msgObj.nl);
 	}
 	if (msgObj.err !== undefined) {
 		console.error(msgObj.err);

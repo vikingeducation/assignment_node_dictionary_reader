@@ -18,6 +18,18 @@ function scanHandler(result) {
 
 	// If we make it here, we got some files.
 	ui.display.listFiles(result);
+
+  ui.prompt.ask_for_choice();
+
+  ui.input.query( (data) => {
+    data = data.trim().toLowerCase();
+    if (data === 'q') {process.exit()};
+    if (isNaN(+data)) {return;}
+
+
+    
+  })
+
 }
 
 /*
