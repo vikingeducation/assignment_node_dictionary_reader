@@ -30,7 +30,7 @@ function parseFile(dictionary){
   let readStream = fs.createReadStream(path, 'utf8');
 
   let contents = '';
-  
+
   readStream.on('data', (data) => {
     contents += data;
   });
@@ -42,8 +42,29 @@ function parseFile(dictionary){
     console.log('Successfully loaded: dictionary.json');
     console.log(`Word count: ${numberOfWords}`);
     console.log('Word frequency by starting letter:');
-
+    let tracker = firstLetterCount(dictionary);
+    logLetterCount(tracker);
   });
+}
+
+function firstLetterCount(dictionary){
+  let tracker = {};
+  let wordCount = 0;
+  for (let word in dictionary){
+    let letter = word[0].toUpperCase();
+    if (tracker[letter] === undefined){
+      tracker[letter] = 1
+    } else {
+      tracker[letter]++
+    }
+  }
+  return tracker
+}
+
+function logLetterCount(tracker){
+  for (let letter in tracker){
+    console.log(`${letter}: ${tracker[letter]}`)
+  }
 }
 
 

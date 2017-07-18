@@ -8,4 +8,5 @@ userInterface.quit();
 loader.loading().then((data) => {
 	userInterface.displayDictionaries(data);
 	userInterface.selectDict(data);
+	userInterface.selectSearchType();
 })

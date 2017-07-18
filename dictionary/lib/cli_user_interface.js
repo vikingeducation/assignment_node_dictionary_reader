@@ -31,11 +31,31 @@ function selectDict(dictionaries) {
 		if (keys.indexOf(data) > -1) {
       let dict = dictionaries[data];
       loader.parseFile(dict)
-      // searching(dictionaries)
+      // process.stdin.pause();
+
 		} else {
       console.log('not one of the options')
     }
 	})
+}
+
+function selectSearchType() {
+  process.stdin.resume();
+  let searchOptions = {
+    1: 'Exact',
+    2: 'Partial',
+    3: 'Begins With',
+    4: 'Ends With'
+  }
+	process.stdin.on("data", (data) => {
+		data = data.trim();
+		if (data === 'search'){
+      console.log('What kind of search?');
+      for (let option in searchOptions){
+        console.log(`${option}: ${searchOptions[option]}`);
+      }
+    }
+  })
 }
 
 function quit() {
@@ -56,5 +76,6 @@ module.exports = {
 	introMessage: introMessage,
   quit: quit,
   displayDictionaries: displayDictionaries,
-  selectDict: selectDict
+  selectDict: selectDict,
+  selectSearchType: selectSearchType
 }
