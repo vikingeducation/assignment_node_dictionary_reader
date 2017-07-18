@@ -1,5 +1,7 @@
 //var splitDict = {aWords = [awords]}
+const saving = require('./saving.js');
 var thisdictionary;
+var lastSearch;
 var SetData = function(setDict)
 {
 thisdictionary = setDict;
@@ -31,6 +33,9 @@ var DisplayWordCount = function(wordCount){
   }
 }
 var searchExact = function(searchWord){
+  lastSearch = thisdictionary[searchWord];
+  saving.LastSearch(lastSearch);
+
   return thisdictionary[searchWord];
 }
 
@@ -44,7 +49,10 @@ var searchPartial = function(searchData){
 
         matches.push(keys[k]);}
     }
-    console.log(matches);
+
+
+    lastSearch = matches;
+    saving.LastSearch(lastSearch);
     return matches;
 }
 
@@ -52,11 +60,14 @@ var searchPartial = function(searchData){
 var searchFirst = function(firstchar){
  var matches = [];
  var keys = Object.keys(thisdictionary);
- var indexC = firstchar.length - 1;
+ var indexC = firstchar.length;
  for (var k in keys) {
    if((keys[k].length >= firstchar.length) && (keys[k].substring(0,indexC) === firstchar)) {
    matches.push(keys[k]);}
    }
+
+   lastSearch = matches;
+   saving.LastSearch(lastSearch);
  return matches;
 }
 
@@ -67,11 +78,17 @@ var searchLast = function(lastchar){
     if((keys[k].length >= lastchar.length) && (keys[k].slice(-lastchar.length) === lastchar)) {
     matches.push(keys[k]);}
     }
+
+    lastSearch = matches;
+    saving.LastSearch(lastSearch);
   return matches;
 }
-
+var SaveSearch = function()
+{
+saving.SaveSearch();
+}
 
 module.exports = {"letterFrequency": letterFrequency,"SetData": SetData,"thisdictionary": thisdictionary,
 "searchExact": searchExact, "searchPartial": searchPartial,
-"searchLast": searchLast, "searchFirst": searchFirst
+"searchLast": searchLast, "searchFirst": searchFirst, "SaveSearch": SaveSearch
 }

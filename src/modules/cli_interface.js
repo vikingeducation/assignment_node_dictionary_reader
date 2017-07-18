@@ -1,5 +1,6 @@
 var load = require('./loading');
 var search = require('./searching');
+const dict = require('./dictionary_data.js');
 
 
 var StateOne = function(){
@@ -34,12 +35,29 @@ var StateThree = function(){
     var onData = (data) => {
     search.searchNow(data);
       process.stdin.removeListener('data', onData);
-           //return StateFour();
+           return StateFour();
        }
 
   process.stdin.on('data', onData);
 }
+var StateFour = function(){
 
+  process.stdin.resume();
+  process.stdin.setEncoding("utf8");
+  //tell them to search!
+    var onData = (data) => {
+      if(data[0].toLowerCase() === "y" ){
+          //write file
+dict.SaveSearch();
+
+       }else{ StateTwo();
+          return
+       }
+
+       }
+
+  process.stdin.on('data', onData);
+}
 
 var init = function() {
 
