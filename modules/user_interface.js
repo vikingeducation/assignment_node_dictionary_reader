@@ -7,24 +7,20 @@ module.exports = {
 				msg: "Welcome to Andrew & Ed's dictionary reader!\n" +
 					"Select a dictionary to use, type 'q' to quit\n" +
 					'============================================\n'
-			})
+			});
 		},
 		ask_for_choice: () => {
 			_showMessage({
-				msg: "Please select your choice:",
-				nl: 0
-			})
-		} 
-
-
-
+				msg: 'Please select your choice: ',
+				nl: false
+			});
+		}
 	},
 	input: {
-		query: (dataHandler) => {
+		query: dataHandler => {
 			process.stdin.resume();
 			process.stdin.setEncoding('utf8');
 			process.stdin.on('data', dataHandler);
-
 		}
 	},
 	//error_reporting: ,
@@ -42,7 +38,7 @@ module.exports = {
 function _showMessage(msgObj) {
 	if (msgObj.msg !== undefined) {
 		if (msgObj.nl === undefined) {
-			msgObj.msg += "\n"
+			msgObj.msg += '\n';
 		}
 		process.stdout.write(msgObj.msg, msgObj.nl);
 	}

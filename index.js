@@ -18,18 +18,25 @@ function scanHandler(result) {
 
 	// If we make it here, we got some files.
 	ui.display.listFiles(result);
+	ui.prompt.ask_for_choice();
+	ui.input.query(selection => {
+		selection = selection.trim().toLowerCase();
+		if (selection === 'q') {
+			process.exit(); // Exit everything.
+		}
 
-  ui.prompt.ask_for_choice();
+		selection = +selection;
+		if (isNaN(selection) || selection < 1 || selection > loader.track.length) {
+			console.log('Invalid choice, please try again.\n');
+			ui.display.listFiles(result);
+			ui.prompt.ask_for_choice();
+			return;
+		}
 
-  ui.input.query( (data) => {
-    data = data.trim().toLowerCase();
-    if (data === 'q') {process.exit()};
-    if (isNaN(+data)) {return;}
-
-
-    
-  })
-
+		// Valid selection.
+		process.stdin.pause();
+		loader.init(selection);
+	});
 }
 
 /*

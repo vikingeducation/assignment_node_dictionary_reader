@@ -1,11 +1,11 @@
 'use strict';
 
 const fs = require('fs');
-
 const DATA_FOLDER = './data/';
 
-module.exports = {
+const LOADER = {
 	track: [],
+	selectedDictionary: null,
 	scan: () => {
 		return new Promise((resolve, reject) => {
 			fs.readdir(DATA_FOLDER, (err, data) => {
@@ -17,11 +17,21 @@ module.exports = {
 				}
 
 				// If we get here, success.
-				module.exports.track = data.filter(element => element.endsWith('.json'));
-				
-				resolve(module.exports.track);
+				LOADER.track = data.filter(element => element.endsWith('.json'));
+
+				resolve(LOADER.track);
 			});
+		});
+	},
+	init: selection => {
+		return new Promse((resolve, reject) => {
+			// Set the selected dictionary.
+			LOADER.selectedDictionary = LOADER.track[selection - 1];
+
+			if (LOADER.selectedDictionary) {
+			}
 		});
 	}
 };
-//(element => element.endsWith('.json'))
+
+module.exports = LOADER;
