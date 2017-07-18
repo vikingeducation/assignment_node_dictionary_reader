@@ -1,16 +1,36 @@
+var load = require('./loading');
+process.stdin.resume();
+process.stdin.setEncoding("utf8");
+var init = function() {
 
 
-function init() {
+  process.stdin.on('data', (data) => {
+    if(load.FindDictionary(data) === false){
+              // do we need to remove listeners?
+              //  process.stdin.removeListener('data', init);
+              //init();
+     }
+      else {
+            //process.stdin.pause(); return
+
+      }
+    })
+}
+
+
+
+function EnterOperation(){
   process.stdin.resume();
   process.stdin.setEncoding("utf8");
 
   process.stdin.on('data', (data) => {
-    //Welcome
-    //Which dictionary would you like to load?
-
-    //run loading.js
+    //Take search term
+    //send to searching
 
   })
+
 }
 
-module.exports = {}
+
+
+module.exports = { "init": init}

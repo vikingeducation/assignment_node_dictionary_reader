@@ -1,3 +1,3 @@
-var cli = require('modules/cli_interface');
+var cli = require('./modules/cli_interface');
 
 cli.init();
