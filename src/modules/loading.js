@@ -1,5 +1,7 @@
 const dictionary = require('../../data/dictionary.json');
 const cli = require('./cli_interface');
+var selectedDictionary;
+
 //var dictionarys = { }
 //display hashtable of dictionaries
 //^^^^ dictionaries available
@@ -10,14 +12,19 @@ const cli = require('./cli_interface');
 //if incorrect, send back to init()
 
 var FindDictionary = function (str){
-  var cli = require('./cli_interface');
   str = str.trim();
   if (str === "1") {
     console.log("hello");
+
+   var selectedDictionary = JSON.stringify(dictionary);
+   console.log(selectedDictionary[0]);
+
+   return true
   }
   else {
     console.log("you suck there is no dictionary named that");
-    cli.init();
+    return false
+    //cli.init();
   }
 
 //if str is a dictionary load that dictionary

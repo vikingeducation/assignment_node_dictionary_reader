@@ -1,16 +1,30 @@
 var load = require('./loading');
-process.stdin.resume();
-process.stdin.setEncoding("utf8");
 
 
 
-var loadDictionary = function(data){
-  load.FindDictionary(data);
-  process.stdin.removeListener('data', loadDictionary());
+
+var StateOne = function(){
+  process.stdin.resume();
+  process.stdin.setEncoding("utf8");
+    var onData = (data) => {
+      //load.FindDictionary(data);
+      if(load.FindDictionary(data) != false){
+        process.stdin.removeListener('data', onData);
+           return StateTwo();
+       }
+    }
+
+
+  process.stdin.on('data', onData);
+
 }
-
+var StateTwo = function() {console.log("Moving on up");}
 var init = function() {
-  process.stdin.on('data', loadDictionary)
+//worry about states?
+//elseif: do you have dictionary, do you have a search term?
+  StateOne();
+  //process.stdin.on('data', loadDictionary)
+
 }
 
 
