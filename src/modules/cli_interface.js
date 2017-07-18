@@ -1,21 +1,18 @@
 var load = require('./loading');
 process.stdin.resume();
 process.stdin.setEncoding("utf8");
-var init = function() {
 
 
-  process.stdin.on('data', (data) => {
-    if(load.FindDictionary(data) === false){
-              // do we need to remove listeners?
-              //  process.stdin.removeListener('data', init);
-              //init();
-     }
-      else {
-            //process.stdin.pause(); return
 
-      }
-    })
+var loadDictionary = function(data){
+  load.FindDictionary(data);
+  process.stdin.removeListener('data', loadDictionary());
 }
+
+var init = function() {
+  process.stdin.on('data', loadDictionary)
+}
+
 
 
 
