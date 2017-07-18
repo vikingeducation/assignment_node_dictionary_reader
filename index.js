@@ -1,9 +1,13 @@
+'use strict';
+
+// Load dictionary module.
 const dictionary = require('./modules/dictionary_reader.js');
 
 // Reference sub modules
 const ui = dictionary.ui;
 const loader = dictionary.loader;
 const searcher = dictionary.searcher;
+const saver = dictionary.saver;
 
 // First welcome the user.
 ui.prompt.welcome();
@@ -19,7 +23,7 @@ function handleScan(result) {
 
 	// If we make it here, we got some files.
 	ui.display.list(result);
-	ui.prompt.ask_for_choice();
+	ui.prompt.askForChoice();
 	ui.input.query(handleSelect);
 }
 
@@ -52,15 +56,15 @@ function handleInit(result) {
 
 	// Start search module.
 	ui.prompt.searchWelcome();
-	ui.display.list(searcher.search_menu);
-	ui.prompt.ask_for_choice();
+	ui.display.list(searcher.searchMenu);
+	ui.prompt.askForChoice();
 
 	// Getting the search type.
 	ui.input.query(handleSearchType);
 
 	/*console.log('Invalid choice, please try again.\n');
 	ui.display.list(result);
-	ui.prompt.ask_for_choice();
+	ui.prompt.askForChoice();
  */
 }
 
@@ -68,7 +72,7 @@ function handleSearchType(selection) {
 	selection = selection.trim();
 
 	// Make sure we have a valid choice.
-	_validateSelection(selection, searcher.search_menu.length);
+	_validateSelection(selection, searcher.searchMenu.length);
 	searcher.setSearchType(selection);
 	ui.prompt.askForSearchString();
 	// Getting the search string.
@@ -78,11 +82,44 @@ function handleSearchType(selection) {
 
 function handleSearch(searchString) {
 	searchString = searchString.trim().toLowerCase();
-	let results = searcher.search.execute(searchString, loader.entries);
-	ui.display.list(results);
+	saver.results = searcher.search.execute(searchString, loader.entries);
+	ui.display.list(saver.results);
+	ui.prompt.askToSaveResults();
 
 	process.stdin.removeListener('data', handleSearch);
+	ui.input.query(handleAskForSave);
 }
+
+function handleAskForSave(answer) {
+	answer = answer.trim().toLowerCase();
+	if (answer === 'y') {
+		ui.prompt.askForSaveFileName();
+		ui.input.query(handleSave);
+	} else if (answer === 'n') {
+		// Return to menu?
+	} else {
+		// Invalid answer
+		ui.prompt.askToSaveResults();
+	}
+}
+
+function handleSave(filename) {
+	filename = filename.trim();
+
+	// Attempt to read the file, if it throws an error
+	// it does not exist? Maybe?
+	saver.check(filename).then(saver.save, handleFileExists).then(result => {
+		if (typeof result === 'function') {
+			// An error occurred.
+			throw result;
+		}
+
+		// Success
+		console.log('Successfully saved file');
+	});
+}
+
+function handleFileExists(filename) {}
 
 function _validateSelection(selection, max) {
 	selection = +selection;

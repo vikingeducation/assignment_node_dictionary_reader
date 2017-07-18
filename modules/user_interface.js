@@ -9,7 +9,7 @@ module.exports = {
 					'============================================\n'
 			});
 		},
-		ask_for_choice: () => {
+		askForChoice: () => {
 			_showMessage({
 				msg: 'Please select your choice: ',
 				nl: false
@@ -44,12 +44,23 @@ module.exports = {
 			});
 		},
 		askForSearchString: () => {
-			_showMessage ({msg: "Please enter the string to search for: ", nl: false});
-
-
+			_showMessage({
+				msg: 'Please enter the string to search for: ',
+				nl: false
+			});
 		},
-
-
+		askToSaveResults: () => {
+			_showMessage({
+				msg: 'Save results? ',
+				nl: false
+			});
+		},
+		askForSaveFileName: () => {
+			_showMessage({
+				msg: 'Enter a filename: ',
+				nl: false
+			});
+		}
 	},
 	input: {
 		query: dataHandler => {
@@ -61,9 +72,13 @@ module.exports = {
 	//error_reporting: ,
 	display: {
 		list: items => {
+			console.log(`\nFound ${items.length} result(s)`);
 			items.forEach((el, idx) => {
+				if (typeof el === 'object') {
+					console.log(`> ${el.word}:  ${el.def}`);
+				} else {
 					console.log(`${idx + 1}: ${el}`);
-				
+				}
 			});
 		}
 	}
