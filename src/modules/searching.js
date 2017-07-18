@@ -33,14 +33,14 @@ var searchNow = function(searchData){
       console.log(dict.searchExact(searchData));
     break;
     case 1:
-    dict.searchPartial(searchData)
+      console.log(dict.searchPartial(searchData));
       //console.log();
     break;
     case 2:
-
+      console.log(dict.searchFirst(searchData));
     break;
     case 3:
-dict.searchlast(searchData)
+      console.log(dict.searchLast(searchData));
     break;
 
   }

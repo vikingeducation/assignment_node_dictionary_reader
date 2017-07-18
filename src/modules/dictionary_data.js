@@ -48,34 +48,30 @@ var searchPartial = function(searchData){
     return matches;
 }
 
-var searchFirst = function(){
+
+var searchFirst = function(firstchar){
+ var matches = [];
+ var keys = Object.keys(thisdictionary);
+ var indexC = firstchar.length - 1;
+ for (var k in keys) {
+   if((keys[k].length >= firstchar.length) && (keys[k].substring(0,indexC) === firstchar)) {
+   matches.push(keys[k]);}
+   }
+ return matches;
+}
+
+var searchLast = function(lastchar){
   var matches = [];
   var keys = Object.keys(thisdictionary);
   for (var k in keys) {
-    //console.log(k);
-        if(keys[k].toString().includes(searchData) === true){
-
-        matches.push(keys[k]);}
+    if((keys[k].length >= lastchar.length) && (keys[k].slice(-lastchar.length) === lastchar)) {
+    matches.push(keys[k]);}
     }
-    console.log(matches);
-    return matches;
- }
-
-var searchlast = function(lastchar){
-  var matches = [];
-  var keys = Object.keys(thisdictionary);
-  for (var k in keys) {
-    //console.log(k);
-        if(keys[k][0] === lastchar){
-
-        matches.push(keys[k]);}
-    }
-    console.log(matches);
-    return matches;
+  return matches;
 }
 
 
 module.exports = {"letterFrequency": letterFrequency,"SetData": SetData,"thisdictionary": thisdictionary,
 "searchExact": searchExact, "searchPartial": searchPartial,
-"searchlast": searchlast
+"searchLast": searchLast, "searchFirst": searchFirst
 }
