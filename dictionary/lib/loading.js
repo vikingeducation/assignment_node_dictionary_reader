@@ -25,27 +25,53 @@ function loading() {
 }
 
 // /^[^:]+:\s*/gm - for colons
-function parseFile(dictionary){
-  let path = `./data/${dictionary}`
-  let readStream = fs.createReadStream(path, 'utf8');
+function parseFile(dictionary, allowMessage){
+  return new Promise((resolve, reject)=>{
+    let path = `./data/${dictionary}`
+    let readStream = fs.createReadStream(path, 'utf8');
 
-  let contents = '';
+    let contents = '';
 
-  readStream.on('data', (data) => {
-    contents += data;
-  });
+    readStream.on('data', (data) => {
+      contents += data;
+    });
 
-  readStream.on('end', () => {
-    let dictionary = JSON.parse(contents);
-    let numberOfWords = Object.keys(dictionary).length;
-
-    console.log('Successfully loaded: dictionary.json');
-    console.log(`Word count: ${numberOfWords}`);
-    console.log('Word frequency by starting letter:');
-    let tracker = firstLetterCount(dictionary);
-    logLetterCount(tracker);
-  });
+    readStream.on('end', () => {
+      let dictionary = JSON.parse(contents);
+      let numberOfWords = Object.keys(dictionary).length;
+      if (allowMessage){
+        console.log('Successfully loaded: dictionary.json');
+        console.log(`Word count: ${numberOfWords}`);
+        console.log('Word frequency by starting letter:');
+      }
+      let tracker = firstLetterCount(dictionary);
+      logLetterCount(tracker);
+      resolve(dictionary);
+    });
+  })
 }
+  // let path = `./data/${dictionary}`
+  // let readStream = fs.createReadStream(path, 'utf8');
+  //
+  // let contents = '';
+  //
+  // readStream.on('data', (data) => {
+  //   contents += data;
+  // });
+  //
+  // readStream.on('end', () => {
+  //   let dictionary = JSON.parse(contents);
+  //   let numberOfWords = Object.keys(dictionary).length;
+  //   if (allowMessage){
+  //     console.log('Successfully loaded: dictionary.json');
+  //     console.log(`Word count: ${numberOfWords}`);
+  //     console.log('Word frequency by starting letter:');
+  //   }
+  //   let tracker = firstLetterCount(dictionary);
+  //   logLetterCount(tracker);
+  //   resolve(dictionary);
+  // });
+
 
 function firstLetterCount(dictionary){
   let tracker = {};
