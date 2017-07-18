@@ -15,14 +15,26 @@ module.exports = {
 				nl: false
 			});
 		},
-		showStats: (selectedDictionary, entries) => {
+		showStats: statsObj => {
+			// Success message.
 			_showMessage({
-				msg: "Successfully loaded" + selectedDictionary
-				wordCount: 
-			})
+				msg: 'Successfully loaded: ' + statsObj.selectedDictionary
+			});
+
+			// Word count.
+			_showMessage({
+				msg: 'Word count: ' + statsObj.wordCount
+			});
+
+			// Letter frequency.
+			for (var letter in statsObj.letterFrequency) {
+				if (!statsObj.hasOwnProperty(letter)) {
+					_showMessage({
+						msg: letter.toUpperCase() + ': ' + statsObj.letterFrequency[letter]
+					});
+				}
+			}
 		}
-
-
 	},
 	input: {
 		query: dataHandler => {
@@ -39,8 +51,6 @@ module.exports = {
 			});
 		}
 	}
-
-
 };
 
 // Inline function to handle
@@ -55,14 +65,4 @@ function _showMessage(msgObj) {
 	if (msgObj.err !== undefined) {
 		console.error(msgObj.err);
 	}
-}
-
-// Handler for STDIN data
-// event
-function _onData(data) {
-	// Remove whitespace.
-	data = data.trim();
-
-	//process.stdin.pause();
-	//process.stdin.removeListener('data', onData);
 }

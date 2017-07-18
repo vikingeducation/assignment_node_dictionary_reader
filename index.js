@@ -8,9 +8,9 @@ const loader = dictionary.loader;
 ui.prompt.welcome();
 
 // Now load the dictionary and scan for json files.
-loader.scan().then(scanHandler);
+loader.scan().then(handleScan);
 
-function scanHandler(result) {
+function handleScan(result) {
 	if (typeof result === 'function') {
 		// We got an error.
 		throw result;
@@ -19,48 +19,37 @@ function scanHandler(result) {
 	// If we make it here, we got some files.
 	ui.display.listFiles(result);
 	ui.prompt.ask_for_choice();
-	ui.input.query(selection => {
-		selection = selection.trim().toLowerCase();
-		if (selection === 'q') {
-			process.exit(); // Exit everything.
-		}
-
-		selection = +selection;
-		if (isNaN(selection) || selection < 1 || selection > loader.track.length) {
-			console.log('Invalid choice, please try again.\n');
-			ui.display.listFiles(result);
-			ui.prompt.ask_for_choice();
-			return;
-		}
-
-		// Valid selection.
-		process.stdin.pause();
-		loader.init(selection).then(initHandler);
-
-	});
+	ui.input.query(selectHandler);
 }
 
-function initHandler (result) {
+function selectHandler(selection) {
+	selection = selection.trim().toLowerCase();
+	if (selection === 'q') {
+		process.exit(); // Exit everything.
+	}
+
+	selection = +selection;
+	if (isNaN(selection) || selection < 1 || selection > loader.track.length) {
+		console.log('Invalid choice, please try again.\n');
+		ui.display.listFiles(result);
+		ui.prompt.ask_for_choice();
+		return;
+	}
+
+	// Valid selection.
+	process.stdin.pause();
+	loader.init(selection).then(handleInit);
+}
+
+function handleInit(result) {
 	if (typeof result === 'function') {
 		// We got an error.
 		throw result;
 	}
-	
+
+	ui.prompt.showStats({
+		selectedDictionary: loader.selectedDictionary,
+		wordCount: loader.getWordCount(),
+		letterFrequency: loader.getLetterFrequency()
+	});
 }
-
-/*
-loader.scan()
-	.then(one)
-	.then(two, error);
-
-function one(result) {
-
-}
-
-function two(result) {
-
-}
-function error() {
-
-}
-*/

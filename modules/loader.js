@@ -33,12 +33,24 @@ const LOADER = {
 				fs.readFile('./data/' + LOADER.selectedDictionary, (err, data) => {
 					if (err) {
 						reject(err);
-					} 
+					}
 					LOADER.entries = JSON.parse(data);
 					resolve(LOADER.entries);
 				});
 			}
 		});
+	},
+
+	getWordCount: () => Object.keys(LOADER.entries).length,
+	getLetterFrequency: () => {
+		let freqObj = {};
+		Object.keys(LOADER.entries).forEach(el => {
+			if (freqObj[el[0]] === undefined) {
+				freqObj[el[0]] = 0;
+			}
+			freqObj[el[0]]++;
+		});
+		return freqObj;
 	}
 };
 
