@@ -4,7 +4,7 @@ const SEARCHER = {
 	search_menu: ['Exact', 'Partial', 'Begins With', 'Ends With'],
 	searchType: 0,
 	setSearchType: selection => {
-		console.log(selection);
+		
 		SEARCHER.searchType = +selection - 1;
 	},
 	search: {
@@ -19,16 +19,34 @@ const SEARCHER = {
 		Partial: (searchString, entries) => {
 			let definitions = [];
 			for (var key in entries) {
-				if (!entries.hasOwnProperty(key) && key.includes(searchString)) {
-					console.log(key);
+				if (key.includes(searchString)) {
+				
 					definitions[key] = entries[key];
 				}
 			}
 
 			return definitions;
 		},
-		'Begins With': (searchString, entries) => {},
-		'Ends With': (searchString, entries) => {}
+		'Begins With': (searchString, entries) => {
+			let definitions = [];
+			for (var key in entries) {
+				if (key.startsWith(searchString)) {
+				
+					definitions[key] = entries[key];
+				}
+			} 
+			return definitions;
+		},
+		'Ends With': (searchString, entries) => {
+			let definitions = [];
+			for (var key in entries) {
+				if (key.endsWith(searchString)) {
+				
+					definitions[key] = entries[key];
+				}
+			}
+			return definitions;
+		}
 	}
 };
 

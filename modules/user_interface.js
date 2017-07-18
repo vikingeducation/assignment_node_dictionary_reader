@@ -60,9 +60,10 @@ module.exports = {
 	},
 	//error_reporting: ,
 	display: {
-		list: list => {
-			list.forEach((el, idx) => {
-				console.log(`${idx + 1}: ${el}`);
+		list: items => {
+			items.forEach((el, idx) => {
+					console.log(`${idx + 1}: ${el}`);
+				
 			});
 		}
 	}

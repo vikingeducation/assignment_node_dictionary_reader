@@ -78,8 +78,9 @@ function handleSearchType(selection) {
 
 function handleSearch(searchString) {
 	searchString = searchString.trim().toLowerCase();
-	let def = searcher.search.execute(searchString, loader.entries);
-	console.log(def);
+	let results = searcher.search.execute(searchString, loader.entries);
+	ui.display.list(results);
+
 	process.stdin.removeListener('data', handleSearch);
 }
 
