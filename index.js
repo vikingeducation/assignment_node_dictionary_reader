@@ -69,7 +69,7 @@ function handleSearchType(selection) {
 
 	// Make sure we have a valid choice.
 	_validateSelection(selection, searcher.search_menu.length);
-	searcher.setSearchType = 
+	searcher.setSearchType(selection);
 	ui.prompt.askForSearchString();
 	// Getting the search string.
 	process.stdin.removeListener('data', handleSearchType);
@@ -78,13 +78,15 @@ function handleSearchType(selection) {
 
 function handleSearch(searchString) {
 	searchString = searchString.trim().toLowerCase();
-	searcher.search.
+	let def = searcher.search.execute(searchString, loader.entries);
+	console.log(def);
 	process.stdin.removeListener('data', handleSearch);
 }
 
 function _validateSelection(selection, max) {
 	selection = +selection;
 	if (isNaN(selection) || selection < 1 || selection > max) {
+		console.log('INVALID');
 		return false;
 	}
 	return true;
