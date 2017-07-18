@@ -33,22 +33,49 @@ var DisplayWordCount = function(wordCount){
 var searchExact = function(searchWord){
   return thisdictionary[searchWord];
 }
+
 var searchPartial = function(searchData){
-  //var reg = new RegExp("(" + searchData + ")", "i");
-  var reg = /oo/g;
-  console.log(reg);
-  var keys = Object.keys(thisdictionary);
+
   var matches = [];
-  keys = keys.join(' ')
+  var keys = Object.keys(thisdictionary);
+  for (var k in keys) {
+    //console.log(k);
+        if(keys[k].toString().includes(searchData) === true){
 
-  var match = keys.match(reg);
-  // while (match) {
-  //   matches.push(match);
-  //   match = reg.exec(keys);
-  // }
+        matches.push(keys[k]);}
+    }
+    console.log(matches);
+    return matches;
+}
 
-  return match;
+var searchFirst = function(){
+  var matches = [];
+  var keys = Object.keys(thisdictionary);
+  for (var k in keys) {
+    //console.log(k);
+        if(keys[k].toString().includes(searchData) === true){
+
+        matches.push(keys[k]);}
+    }
+    console.log(matches);
+    return matches;
+ }
+
+var searchlast = function(lastchar){
+  var matches = [];
+  var keys = Object.keys(thisdictionary);
+  for (var k in keys) {
+    //console.log(k);
+        if(keys[k][0] === lastchar){
+
+        matches.push(keys[k]);}
+    }
+    console.log(matches);
+    return matches;
 }
 
 
-module.exports = {"letterFrequency": letterFrequency,"SetData": SetData,"thisdictionary": thisdictionary, "searchExact": searchExact, "searchPartial": searchPartial}
+module.exports = {"letterFrequency": letterFrequency,"SetData": SetData,"thisdictionary": thisdictionary,
+"searchExact": searchExact, "searchPartial": searchPartial,
+"searchlast": searchlast
+}

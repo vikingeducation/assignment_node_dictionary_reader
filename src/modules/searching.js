@@ -18,7 +18,7 @@ var searchType = function(data){
     case "B":
       searchType = 2;
     break;
-    case "E":
+    case "F":
       searchType = 3;
     break;
     default: return false;
@@ -33,13 +33,14 @@ var searchNow = function(searchData){
       console.log(dict.searchExact(searchData));
     break;
     case 1:
-      console.log(dict.searchPartial(searchData));
+    dict.searchPartial(searchData)
+      //console.log();
     break;
     case 2:
 
     break;
     case 3:
-
+dict.searchlast(searchData)
     break;
 
   }
