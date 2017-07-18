@@ -1,3 +1,11 @@
+//var splitDict = {aWords = [awords]}
+var thisdictionary;
+var SetData = function(setDict)
+{
+thisdictionary = setDict;
+
+console.log(thisdictionary["a"]);
+}
 var letterFrequency = function(dict) {
   var letterFrequencyObj = {
   }
@@ -25,4 +33,4 @@ var DisplayWordCount = function(wordCount){
   }
 }
 
-module.exports = {"letterFrequency": letterFrequency}
+module.exports = {"letterFrequency": letterFrequency,"SetData": SetData,"thisdictionary": thisdictionary}

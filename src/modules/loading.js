@@ -15,6 +15,9 @@ var FindDictionary = function (str){
    var selectedDictionary = dictionary;
    console.log("Word count: " + Object.keys(selectedDictionary).length);
    dictData.letterFrequency(selectedDictionary);
+   dictData.SetData(selectedDictionary); 
+
+
    return true;
   }
   else {

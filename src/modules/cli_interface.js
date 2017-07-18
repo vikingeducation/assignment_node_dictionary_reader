@@ -1,4 +1,6 @@
 var load = require('./loading');
+var search = require('./searching');
+
 
 var StateOne = function(){
   process.stdin.resume();
@@ -16,15 +18,27 @@ var StateTwo = function(){
   process.stdin.resume();
   process.stdin.setEncoding("utf8");
   //tell them to search!
+  search.whatSearch();
     var onData = (data) => {
-      if(different function != false){
+      if(search.searchType(data) != false){
         process.stdin.removeListener('data', onData);
            return StateThree();
        }
     }
   process.stdin.on('data', onData);
 }
+var StateThree = function(){
+  process.stdin.resume();
+  process.stdin.setEncoding("utf8");
+  //tell them to search!
+    var onData = (data) => {
+    search.searchNow(data);
+      process.stdin.removeListener('data', onData);
+           //return StateFour();
+       }
 
+  process.stdin.on('data', onData);
+}
 
 
 var init = function() {
