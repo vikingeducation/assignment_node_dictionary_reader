@@ -2,8 +2,16 @@ var load = require('./loading');
 var search = require('./searching');
 const dict = require('./dictionary_data.js');
 
+const welcome =
+`
+
+Welcome to the Amazing Dictionary Tool!
+========================================
+
+`;
 
 var StateOne = function(){
+  console.log(welcome);
   process.stdin.resume();
   process.stdin.setEncoding("utf8");
   load.displayDictionaries();

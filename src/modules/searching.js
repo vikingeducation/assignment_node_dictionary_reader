@@ -30,18 +30,18 @@ var searchNow = function(searchData){
   searchData = searchData.trim();
   switch(searchType) {
     case 0:
-      console.log(dict.searchExact(searchData)+ "Do you want to save this search?");
+      console.log(dict.searchExact(searchData)+ "\n\nDo you want to save this search?");
     break;
     case 1:
-      console.log(dict.searchPartial(searchData) + "Do you want to save this search?");
+      console.log(dict.searchPartial(searchData) + "\n\nDo you want to save this search?");
 
       //console.log();
     break;
     case 2:
-      console.log(dict.searchFirst(searchData)+ "Do you want to save this search?");
+      console.log(dict.searchFirst(searchData)+ "\n\nDo you want to save this search?");
     break;
     case 3:
-      console.log(dict.searchLast(searchData)+ "Do you want to save this search?");
+      console.log(dict.searchLast(searchData)+ "\n\nDo you want to save this search?");
     break;
 
   }

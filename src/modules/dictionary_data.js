@@ -28,7 +28,7 @@ DisplayWordCount(letterFrequencyObj);
 var DisplayWordCount = function(wordCount){
   for (var k in wordCount) {
       if (wordCount.hasOwnProperty(k)) {
-        console.log(wordCount[k] + " words with " + k );
+        console.log(wordCount[k] + " " + k + " words,");
       }
   }
 }
