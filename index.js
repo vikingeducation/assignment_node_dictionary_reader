@@ -61,11 +61,6 @@ function handleInit(result) {
 
 	// Getting the search type.
 	ui.input.query(handleSearchType);
-
-	/*console.log('Invalid choice, please try again.\n');
-	ui.display.list(result);
-	ui.prompt.askForChoice();
- */
 }
 
 function handleSearchType(selection) {
@@ -75,6 +70,7 @@ function handleSearchType(selection) {
 	_validateSelection(selection, searcher.searchMenu.length);
 	searcher.setSearchType(selection);
 	ui.prompt.askForSearchString();
+
 	// Getting the search string.
 	process.stdin.removeListener('data', handleSearchType);
 	ui.input.query(handleSearch);
@@ -111,13 +107,16 @@ function handleAskForSave(answer) {
 
 function handleSave(filename) {
 	filename = filename.trim();
+	saver.filename = filename;
 
 	// Attempt to read the file, if it throws an error
 	// it does not exist? Maybe?
-	saver
-		.check(filename)
-		.then(handleFileExists, saver.save)
-		.catch(handleFileSaved);
+	if (saver.check(filename)) {
+		ui.prompt.fileExists();
+		ui.input.query(handleFileExists);
+	} else {
+		saver.save().then(handleFileSaved);
+	}
 
 	process.stdin.removeListener('data', handleSave);
 }
@@ -130,23 +129,21 @@ function handleFileSaved() {
 
 	// Success
 	ui.prompt.fileSaved();
+	mainMenu(loader.track);
 }
 
-function handleFileExists(filename) {
-	ui.prompt.fileExists();
-	ui.input.query(handleAnswer);
-
-	function handleAnswer(answer) {
-		answer = answer.trim().toLowerCase();
-		if (answer === 'y') {
-			saver.save(filename).then(handleFileSaved);
-		} else if (answer === 'n') {
-			mainMenu(loader.track);
-		} else {
-			// Invalid answer
-			ui.prompt.askToSaveResults();
-		}
-		process.stdin.removeListener(this);
+function handleFileExists(answer) {
+	answer = answer.trim().toLowerCase();
+	if (answer === 'y') {
+		saver.save().then(handleFileSaved);
+		mainMenu(loader.track);
+		process.stdin.removeListener('data', handleFileExists);
+	} else if (answer === 'n') {
+		mainMenu(loader.track);
+		process.stdin.removeListener('data', handleFileExists);
+	} else {
+		// Invalid answer
+		ui.prompt.askToSaveResults();
 	}
 }
 

@@ -63,7 +63,7 @@ module.exports = {
 		},
 		fileExists: () => {
 			_showMessage({
-				msg: 'File exists already, overwrite?',
+				msg: 'File exists already, overwrite? ',
 				nl: false
 			});
 		},

@@ -5,26 +5,15 @@ const DATA_FOLDER = './data/';
 
 const SAVER = {
 	results: null,
-	check: filename => {
+	filename: '',
+	check: filename => fs.existsSync(DATA_FOLDER + filename),
+	save: () => {
+		SAVER.results = SAVER.results.map(el => `${el.word}: ${el.def}`).join('\n');
 		return new Promise((resolve, reject) => {
-			// Attempt to read the file, if it throws an error
-			// it does not exist? Maybe?
-			fs.readFile(filename, (err, data) => {
-				if (err) {
-					resolve(filename);
-				} else {
-					console.log(data)
-					reject(filename);
-				}
-			});
-		});
-	},
-	save: filename => {
-		return new Promise((resolve, reject) => {
-			fs.writeFile(DATA_FOLDER + filename), err => {
+			fs.writeFile(DATA_FOLDER + SAVER.filename, SAVER.results, err => {
 				if (err) reject(err);
 				resolve(true);
-			};
+			});
 		});
 	}
 };

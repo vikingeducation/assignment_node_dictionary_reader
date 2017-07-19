@@ -13,8 +13,20 @@ const SEARCHER = {
 				entries
 			);
 		},
-		Exact: (searchString, entries) =>
-			entries[Object.keys(entries).find(el => el === searchString)],
+		Exact: (searchString, entries) => {
+			let definitions = [];
+			var i = 0;
+			for (var key in entries) {
+				if (key === searchString) {
+					definitions[i++] = {
+						word: key,
+						def: entries[key]
+					};
+				}
+			}
+			return definitions;
+		},
+
 		Partial: (searchString, entries) => {
 			let definitions = [];
 			var i = 0;
