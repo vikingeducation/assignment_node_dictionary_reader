@@ -1,4 +1,5 @@
-var fs = require('fs');
+var saving = require('./saving');
+
 var choices = 4;
 var wordDataG = "";
 var wholeDataG = "";
@@ -44,19 +45,19 @@ var searchBy = function (wordToSearchFor) {
   wordToSearchFor = wordToSearchFor.trim();
   //Entire word
   if (selected === 1) {
-    var regex = new RegExp ("\\b(" + wordToSearchFor + ")\\b", 'g');
+    var regex = new RegExp ("\\b(" + wordToSearchFor + ")\\b", 'gi');
   }
   //Partial of word
   else if (selected === 2) {
-    var regex = new RegExp ("\\w*(" + wordToSearchFor + ")\\w*", 'g');
+    var regex = new RegExp ("\\w*(" + wordToSearchFor + ")\\w*", 'gi');
   }
   //Beginning of word
   else if (selected === 3) {
-    var regex = new RegExp ("\\b(" + wordToSearchFor + ")\\w*", 'g');
+    var regex = new RegExp ("\\b(" + wordToSearchFor + ")\\w*", 'gi');
   }
   //Ending of word
   else if (selected === 4) {
-    var regex = new RegExp ("\\w*(" + wordToSearchFor + ")\\b", 'g');
+    var regex = new RegExp ("\\w*(" + wordToSearchFor + ")\\b", 'gi');
   }
   var match = wordDataG.match(regex);
   if (match === null) {
@@ -72,6 +73,7 @@ var searchBy = function (wordToSearchFor) {
     }
     process.stdin.pause();
     process.stdin.removeListener('data', searchBy);
+    saving(match.toString());
   }
 }
 
