@@ -6,11 +6,7 @@ var searching = require('./searching.js');
 
 var Main = {
 	init: function(){
-		UI.test();
-		loader.test()
-		saving.test();
-		dictData.test();
-		searching.test();
+		UI.start_UI();
 	}
 }
 

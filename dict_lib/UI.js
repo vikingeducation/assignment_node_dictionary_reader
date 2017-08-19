@@ -1,7 +1,73 @@
-var UI = {
+var loader = require('./loader.js');
+var saving = require('./saving.js');
+var dictData = require('./dictData.js');
+var searching = require('./searching.js');
+var welcome_string = `
+	Welcome to Node Dictionary Reader
+	---------------------------------
+
+	Press Q to quit
+`;
+
+
+var userInterface = {
 	test: function(){
 		console.log('test');
+	},
+
+	start_UI: function(){
+			  process.stdin.resume();
+			  process.stdin.setEncoding('utf8');
+
+			  var showMessage = (err, str) => {
+			    if (err) {
+			      console.error(err);
+			    }
+			  };
+
+			  showMessage(welcome_string);
+
+			  var onData = (data) => {
+			    data = data.trim();
+
+			    if(data == 'q' || data == 'Q' || data == "quit"){
+			    	console.log("Goodbye!");
+			    	process.exit();
+			    }
+			    if (data === 'load') {
+			    	process.stdin.pause();
+      				process.stdin.removeListener('data', onData);
+			    	loader.scan();
+			    } 
+
+			    else {
+			      showMessage(`Invalid Command ${ data }`);
+			    }
+			  };
+
+			  process.stdin.on('data', onData);
+	},
+
+	loader_UI: function(arr){
+		process.stdin.resume();
+  		process.stdin.setEncoding('utf8');
+		console.log('Which one would you like to load? (select a number)');
+		console.log("Enter C or cancel to go back to main app");
+
+		var onData = function(data){
+			var data = data.trim();
+
+			if(data == 'cancel' || data == 'c'){
+				process.stdin.pause();
+      			process.stdin.removeListener('data', onData);
+      			userInterface.start_UI();
+			}
+
+
+		}
+
+		process.stdin.on('data', onData);
 	}
 }
 
-module.exports = UI;
+module.exports = userInterface;
