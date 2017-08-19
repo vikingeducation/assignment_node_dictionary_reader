@@ -58,7 +58,7 @@ var userInterface = {
 		process.stdin.resume();
   		process.stdin.setEncoding('utf8');
 		console.log('Which one would you like to load? (select a number)');
-		console.log("Or enter C or cancel to go back to main app");
+		console.log("Or enter C or cancel to go back to main app\n");
 
 		var onData = function(data){
 			var data = data.trim();
@@ -69,10 +69,10 @@ var userInterface = {
       			userInterface.start_UI();
 			}
 
-			else if(data.match(/\d+/)){
+			else if(parseInt(data.match(/\d+/)) < arr.length+1){
 				var user_number = parseInt(data.match(/\d+/)[0])-1;
 				var selected_folder = arr[user_number];
-				console.log(selected_folder)
+				saving.process_file(selected_folder);
 			}
 
 			else{
