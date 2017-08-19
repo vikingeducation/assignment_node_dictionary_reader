@@ -1,17 +1,16 @@
 var fs = require('fs');
 var UI = require('./UI.js');
-UI.test();
 
 var Loader = {
 	scan: function(){
-		fs.readdir('data', (err, data) => {
-			if(err){
-				throw err;
-			}
-
-			var files = Loader.find_JSON_files(data);
-			//UI.test();
-		});
+		return new Promise((resolve, reject) => {
+			fs.readdir('data', (err, data) => {
+				if(err){
+					reject(err);
+				}
+				resolve(Loader.find_JSON_files(data));
+			});
+			})
 	},
 
 	find_JSON_files: function(arr){
@@ -21,6 +20,7 @@ var Loader = {
 			console.log(`${parseInt(file)+1} Found ${arr[file]}`);
 			returned_arr.push(arr[file]);
 		}
+		console.log(`\n`);
 		return returned_arr;
 	},
 }
