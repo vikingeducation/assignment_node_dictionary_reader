@@ -32,7 +32,7 @@ var userInterface = {
 			    data = data.trim();
 
 			    //quit
-			    if(data == 'q' || data == 'Q' || data == "quit"){
+			    if(data.toLowerCase() == 'q' || data.toLowerCase() == "quit"){
 			    	console.log("Goodbye!");
 			    	process.exit();
 			    }
@@ -63,7 +63,7 @@ var userInterface = {
 		var onData = function(data){
 			var data = data.trim();
 
-			if(data == 'cancel' || data == 'c'){
+			if(data.toLowerCase() == 'cancel' || data.toLowerCase() == 'c'){
 				process.stdin.pause();
       			process.stdin.removeListener('data', onData);
       			userInterface.start_UI();
@@ -72,7 +72,11 @@ var userInterface = {
 			else if(parseInt(data.match(/\d+/)) < arr.length+1){
 				var user_number = parseInt(data.match(/\d+/)[0])-1;
 				var selected_folder = arr[user_number];
-				saving.process_file(selected_folder);
+				dictData.process_file(selected_folder).then((results) => {
+					process.stdin.pause();
+      				process.stdin.removeListener('data', onData);
+					userInterface.start_searchUI(selected_folder);
+				})
 			}
 
 			else{
@@ -81,6 +85,74 @@ var userInterface = {
 		}
 
 		process.stdin.on('data', onData);
+	},
+
+	start_searchUI: function(file){
+		process.stdin.resume();
+  		process.stdin.setEncoding('utf8');
+  		var searchUI_str = `
+  		${file}
+  			---------------------
+  			What kind of search would you like to perform? (Default: Exact)
+			1: Exact
+			2: Partial
+			3: Begins With
+			4: Ends With
+
+			---------------------
+
+			Remember: c or cancel goes back to the main app
+			use command 'change' to use a different search method
+
+  		`;
+  		console.log(searchUI_str);
+
+  		//type of search
+  		var search;
+
+  		var onData = function(data){
+  			data = data.trim();
+
+  			if(data.toLowerCase() == 'cancel' || data.toLowerCase() == 'c'){
+				process.stdin.pause();
+      			process.stdin.removeListener('data', onData);
+      			userInterface.start_UI();
+			}
+
+			else if(data.match(/[1-4]/)){
+				var user_number = data.match(/[1-4]/)[0];
+				if(user_number == 1){ search = "exact" }
+				if(user_number == 2){ search = "partial" }
+				if(user_number == 3){ search = "beginning" }
+				if(user_number == 4){ search = "end" }
+				console.log('Enter search term: ');
+			}
+
+			else if(data === "change"){
+				//end currenty process
+				process.stdin.pause();
+      			process.stdin.removeListener('data', onData);
+      			
+				//recursive call to 'restart' view
+				userInterface.start_searchUI(file);
+			}
+
+			else if(data.match(/[a-zA-z]+/)){
+				var search_term = data.match(/[a-zA-z]+/);
+				console.log(`search term: ${search_term}`);
+				console.log(`-----------------------------\n`)
+				if(search == 'exact'){ searching.search_exact(file, search_term)}
+				if(search == 'partial'){ searching.search_partial(file, search_term, 'partial')}
+				if(search == 'beginning'){ searching.search_partial(file, search_term, 'beginning')}
+				if(search == 'end'){ searching.search_partial(file, search_term, 'end')}
+			}
+
+			else{
+				console.log(`Sorry, we didn't recognize your command ${data}`);
+			}
+  		}
+
+  		process.stdin.on('data', onData);
 	}
 }
 
