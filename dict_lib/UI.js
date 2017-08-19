@@ -103,7 +103,6 @@ var userInterface = {
 
 			Remember: c or cancel goes back to the main app
 			use command 'change' to use a different search method
-
   		`;
   		console.log(searchUI_str);
 
@@ -129,10 +128,10 @@ var userInterface = {
 			}
 
 			else if(data === "change"){
-				//end currenty process
+				//end current process
 				process.stdin.pause();
       			process.stdin.removeListener('data', onData);
-      			
+
 				//recursive call to 'restart' view
 				userInterface.start_searchUI(file);
 			}

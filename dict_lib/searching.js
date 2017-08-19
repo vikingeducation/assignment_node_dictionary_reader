@@ -35,6 +35,7 @@ var Searching = {
 				 }
 				 else{`Search term ${word} not found\n`}
 			}
+		console.log(`\n Use 'save' to store results in a file`);
 		});
 	},
 
