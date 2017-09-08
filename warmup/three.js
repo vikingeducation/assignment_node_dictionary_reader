@@ -22,6 +22,7 @@ function three() {
     //if user input next
     //go to next State
     if (data == 'next') {
+      console.log('goodbye')
       process.stdin.pause();
       process.stdin.removeListener('data', onData);
 
