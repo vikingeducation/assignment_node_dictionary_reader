@@ -1,3 +1,3 @@
-var dictionary = require('./lib/dictionary');
+var dictionary = require('./lib/dictionary/');
 
-dictionary.init()
+dictionary.init();

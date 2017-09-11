@@ -25,11 +25,11 @@ function one() {
     //go to next State
     if (data == 'next') {
       //process.stdin.pause();
-      process.stdin.removeListener('data', onData);
+      //process.stdin.removeListener('data', onData);
 
       //go to next view here
       two()
-      
+
     } else {
       showMessage(`Invalid: ${ data }`);
     }
