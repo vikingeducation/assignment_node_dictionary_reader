@@ -1,45 +1,38 @@
-var three = require('./three')
+var three = require("./three");
 
 function two() {
-
-
   //listen to STDIN
   process.stdin.resume();
-  process.stdin.setEncoding('utf8');
+  process.stdin.setEncoding("utf8");
 
-
-  var showMessage = (err) => {
-    console.log('State two');
+  var showMessage = err => {
+    console.log("State two");
     console.log('Type "next" to continue');
     if (err) {
-      console.error(err)
+      console.error(err);
     }
   };
 
   showMessage();
 
-  var onData = (data) => {
+  var onData = data => {
     data = data.trim();
 
     //if user input next
     //go to next State
-    if (data == 'next') {
+    if (data == "next") {
       //process.stdin.pause();
       //process.stdin.removeListener('data', onData);
 
       //go to next view here
-      three()
-
+      three();
     } else {
-      showMessage(`Invalid: ${ data }`);
+      showMessage(`Invalid: ${data}`);
     }
   };
 
   //listener
-  process.stdin.on('data', onData)
-
+  process.stdin.on("data", onData);
 }
-
-
 
 module.exports = two;
