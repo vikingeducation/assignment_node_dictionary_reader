@@ -40,7 +40,6 @@ module.exports = {
       } else if (file) { // user enters a valid number for a dictinary file
 
         // load the file and get word information
-        // ******** Not sure how to get it to load SYNC VS ASYNC *************
         var load = dictionary.load(file);
 
         load.then(() => {
