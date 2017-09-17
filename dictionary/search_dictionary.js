@@ -85,7 +85,7 @@ module.exports = {
 
       if (data === 'q') {
         process.exit();
-      } else if (![1,2,3,4].includes(parseInt(data))) { // Is not a number 1 - 4
+      } else if (!['1','2','3','4'].includes(data)) { // Is not a number 1 - 4
         process.stdout.write('\n\nYou must enter a number for the search type.\n\n');
         module.exports.init(file);
       } else {
