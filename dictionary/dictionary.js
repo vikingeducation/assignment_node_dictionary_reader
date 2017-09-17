@@ -1,4 +1,5 @@
 var fs = require('fs');
+var chalk = require('chalk');
 
 module.exports = {
   load: (file) => {
@@ -11,8 +12,8 @@ module.exports = {
         var alphabet = alphabetString.toUpperCase().split('');
         var dictionaryWords = Object.keys(dictionary);
 
-        console.log(`Successfully loaded: ${ file }`);
-        console.log(`Word Count: ${ dictionaryWords.length }`);
+        console.log(chalk.green(`Successfully loaded: ${ file }`));
+        console.log(chalk.blue(`Word Count: ${ dictionaryWords.length }`));
 
         console.log('Word frequency by starting letter:');
         for (var i = 0; i < alphabet.length; i++) {

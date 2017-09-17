@@ -1,4 +1,5 @@
 var fs = require('fs');
+var chalk = require('chalk');
 var loader = require('./loader.js');
 var dictionary = require('./dictionary.js');
 var searcher = require('./search_dictionary.js');
@@ -49,11 +50,11 @@ module.exports = {
           searcher.init(file);
         });
       } else if (parseInt(data)) { // user enters a number that is not a dictionary
-        console.log(`\nInvalid dictionary number: ${ data }\n\n`);
+        console.log(chalk.red(`\nInvalid dictionary number: ${ data }\n\n`));
         // Reinitialize program
         module.exports.init();
       } else {
-        console.log(`\nInvalid input: ${ data }\n\n`);
+        console.log(chalk.red(`\nInvalid input: ${ data }\n\n`));
         // Reinitialize program
         module.exports.init();
       }
