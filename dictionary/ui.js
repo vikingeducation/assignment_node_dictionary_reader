@@ -49,9 +49,13 @@ module.exports = {
           searcher.init(file);
         });
       } else if (parseInt(data)) { // user enters a number that is not a dictionary
-        console.log(`Invalid dictionary number: ${ data }`);
+        console.log(`\nInvalid dictionary number: ${ data }\n\n`);
+        // Reinitialize program
+        module.exports.init();
       } else {
-        console.log(`Invalid input: ${ data }`);
+        console.log(`\nInvalid input: ${ data }\n\n`);
+        // Reinitialize program
+        module.exports.init();
       }
     });
   }

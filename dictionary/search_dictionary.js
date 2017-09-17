@@ -30,80 +30,41 @@ var initSearch = (searchType, file) => {
       initSearch(searchType, file);
 
     } else { // Perform search on valid input
-      switch(searchType) {
-        case '1':
-          searches.exact(file, data);
-          break;
-        case '2':
-          searches.partial(file, data);
-          break;
-        case '3':
-          searches.beginsWith(file, data);
-          break;
-        case '4':
-          searches.endsWith(file, data);
-          break;
-      }
+      searchPhrase(file, data, searchType);
     }
   });
 };
 
-var searches = {
-  exact: (file, phrase) => {
-    fs.readFile(`./data/${ file }`, 'utf8', (err, data) => {
-      if (err) throw err;
+var searchPhrase = (file, phrase, searchType) => {
+  fs.readFile(`./data/${ file }`, 'utf8', (err, data) => {
+    if (err) throw err;
 
-      phrase = phrase.toLowerCase();
-      var dictionary = JSON.parse(data);
-      var words = Object.keys(dictionary);
+    phrase = phrase.toLowerCase();
+    var dictionary = JSON.parse(data);
+    var words = Object.keys(dictionary);
+    var matches;
 
-      matches = words.filter(word => phrase === word);
+      switch(searchType) {
+        // When exact
+        case '1':
+          matches = words.filter(word => phrase === word);
+          break;
+        // When partial
+        case '2':
+          matches = words.filter(word => word.includes(phrase));
+          break;
+        // When befins with
+        case '3':
+          matches = words.filter(word => word.startsWith(phrase));
+          break;
+        // When ends with
+        case '4':
+          matches = words.filter(word => word.endsWith(phrase));
+          break;
+      }
 
-      processWords(file, matches, '1');
-    });
-  },
-
-  partial: (file, phrase) => {
-    fs.readFile(`./data/${ file }`, 'utf8', (err, data) => {
-      if (err) throw err;
-
-      phrase = phrase.toLowerCase();
-      var dictionary = JSON.parse(data);
-      var words = Object.keys(dictionary);
-
-      matches = words.filter(word => word.includes(phrase));
-
-      processWords(file, matches, '2');
-    });
-  },
-
-  beginsWith: (file, phrase) => {
-    fs.readFile(`./data/${ file }`, 'utf8', (err, data) => {
-      if (err) throw err;
-
-      phrase = phrase.toLowerCase();
-      var dictionary = JSON.parse(data);
-      var words = Object.keys(dictionary);
-
-      matches = words.filter(word => word.startsWith(phrase));
-
-      processWords(file, matches, '3');
-    });
-  },
-
-  endsWith: (file, phrase) => {
-    fs.readFile(`./data/${ file }`, 'utf8', (err, data) => {
-      if (err) throw err;
-
-      phrase = phrase.toLowerCase();
-      var dictionary = JSON.parse(data);
-      var words = Object.keys(dictionary);
-
-      matches = words.filter(word => word.endsWith(phrase));
-
-      processWords(file, matches, '4');
-    });
-  }
+    processWords(file, matches, searchType);
+  });
 };
 
 module.exports = {
