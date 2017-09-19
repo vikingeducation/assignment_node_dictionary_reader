@@ -3,7 +3,7 @@ var chalk = require('chalk');
 
 module.exports = {
   load: (file) => {
-    var loadFile = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       fs.readFile(`./data/${ file }`, 'utf8', (err, data) => {
         if (err) throw err;
 
@@ -30,12 +30,10 @@ module.exports = {
           console.log(`${ alphabet[i] }: ${ applicableWords.length }`);
 
           if (i === alphabet.length - 1) { // If last letter, resolve promise
-            resolve();
+            resolve(dictionary);
           }
         }
       });
     });
-
-    return loadFile;
   }
 };
