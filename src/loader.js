@@ -1,11 +1,12 @@
 const fs = require('fs');
-const dict = require('./dictionary.js');
+const dictionary = require('./dictionary.js');
 
 let path = './data';
 let matches = [];
 
 let loadFiles = function() {
 
+  // get list of dictionary files and print list
   fs.readdir(path, (err, data) => {
 
     if (err) {
@@ -16,8 +17,8 @@ let loadFiles = function() {
       let regex =/\w+(.json)/g;
       let match = regex.exec(data);
 
-	  console.log(`Select a dictionary to load:\n`);
-
+	  console.log(`Select a dictionary to load:`);
+	  console.log(`============================`);
       while (match) {
         matches.push(match);
         match = regex.exec(data);
@@ -32,30 +33,40 @@ let loadFiles = function() {
   });	
 
 
-// Start listening to STDIN
+  // Start listening to STDIN
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
 
-  process.stdin.on('data', function(data) {
-    data = data.trim();
+  // select one dictionary from list and parse it
+  //'q' to quit and error check input
+  let onData = (data) => {
+  	data = data.trim();
 
     if (data === 'q') {
       console.log('Goodbye.');
       process.exit();
 
     } else {
+      	
       let tempData = Number(parseInt(data));
 
       if ( (tempData > 0) && (tempData <= matches.length) ){
       	let fileName = matches[data-1][0];
-	    dict.parseFile(fileName);
+
+    	process.stdin.pause();
+    	process.stdin.removeListener('data', onData);
+    	
+	    dictionary.parseFile(fileName);
 
 	  } else {
 	  	console.log(`Please select between range 1 and ${matches.length}`);
-	  }
 
-  	}
-  });
+	  }
+	}
+  };
+
+  process.stdin.on('data', onData);
+
 };
 
 module.exports = {
