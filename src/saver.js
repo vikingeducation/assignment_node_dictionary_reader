@@ -28,7 +28,7 @@ let saveResults = function(results) {
         process.exit();
 
       }
-	}
+	  }
   };
 	
   process.stdin.on('data', onData);  	
@@ -41,15 +41,17 @@ let getFileName = function(results) {
   process.stdin.setEncoding('utf8');
 
   process.stdin.on('data', function(data) {
+
     data = data.trim();
 
     let path = `./data/${data}`;
 
     fs.open(path, 'wx', (err, fd) => {
 
-	  if (err) {
-	  	// file exists
-	  	process.stdin.pause();
+	    if (err) {
+
+	  	  // file exists, prompt for overwrite
+	  	  process.stdin.pause();
         process.stdin.removeAllListeners('data');
         fileOverwrite(results, path);
 
@@ -61,10 +63,9 @@ let getFileName = function(results) {
           console.log('The file has been saved!');
           process.exit();
         });
-        
       }
-    })
-  })
+    });
+  });
 };
 
 let fileOverwrite = function (results, fileName) {
@@ -83,7 +84,7 @@ let fileOverwrite = function (results, fileName) {
 
       data = data.trim();
 
-      if( data != 'y' && data != 'n'){
+      if( data != 'y' && data != 'n') {
           // error checking
           console.log('Please enter y/n');
           invalidInput = true;
@@ -104,7 +105,7 @@ let fileOverwrite = function (results, fileName) {
           process.exit();
         }
       }
-    })
+    });
   }
 };
 

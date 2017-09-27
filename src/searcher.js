@@ -12,6 +12,7 @@ let searchFile = function(dict) {
   console.log(`4: "Ends with" matches`);
   console.log(`\n>>`);
 
+  // start listening to stdin
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
 
@@ -28,17 +29,16 @@ let searchFile = function(dict) {
 
       if ( (tempData > 0) && (tempData <= 4) ) {
 
-    	process.stdin.pause();
-    	process.stdin.removeListener('data', onData);
+    	  process.stdin.pause();
+    	  process.stdin.removeListener('data', onData);
 
-    	selectedSearch = tempData;
+    	  selectedSearch = tempData;
         getSearchWord();
 
-	  } else {
-	    console.log(`Please select between range 1 and 4`);
-
-	  }
-	}	
+	    } else {
+	      console.log(`Please select between range 1 and 4`);
+      }
+	  }	
   };
 
   process.stdin.on('data', onData);
@@ -51,7 +51,7 @@ let searchFile = function(dict) {
   	process.stdin.resume();
   	process.stdin.setEncoding('utf8');
   	process.stdin.on('data', searchBy);
-  }
+  };
 
   let searchBy = (word) => {
   	word = word.trim();
@@ -72,7 +72,7 @@ let searchFile = function(dict) {
       	return a.replace(/"/g, '')
       });
 
-      //find matches
+      // find matches
       switch (selectedSearch) {
       	case 1:
       	  newDict.forEach(function(element){
@@ -98,15 +98,17 @@ let searchFile = function(dict) {
 
       if (matches.length === 0) {
       	console.log(`\nNo matches found`);	
+
       } else {
         console.log(`\nFound ${matches.length} matches:`);
+
         matches.forEach(function(item){
       	  console.log(item);
         });
 
-	    saver.saveResults(matches.join('\n'));
+	      saver.saveResults(matches.join('\n'));
       }
-	}	
+	  }	
   };
 };
 

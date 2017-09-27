@@ -9,34 +9,38 @@ let parseFile = function(file) {
   process.stdin.pause();
 
   fs.readFile(path, 'utf8', (err, data) => {
-    if (err){
+
+    if (err) {
       throw err;
 
     } else {
       let regex =/"\w+"/g;
-      let words = data.match(regex);
-      let str = "abcdefghijklmnopqrstuvwxyz";
+      let words = data.match(regex);                          // words array from dictionary file
+      let str = "abcdefghijklmnopqrstuvwxyz";                 // alphabet string
 
   	  console.log(`\nSuccessfully loaded: ${file}`);
       console.log( `Word count: ${words.length}` );
 
-	  console.log('\nWord frequency by starting letter:');
+	    console.log('\nWord frequency by starting letter:');
 	  
-	  position = 0;
-	  for(let i=0; i<str.length; i++) {
+      // loop througgh alphabet string
+	    for(let i=0; i<str.length; i++) {
+  
+	      let nextChar = str.charAt(i);
+	      let letterCount = 0;
 
-	    let nextChar = str.charAt(i);
-	    let letterCount = 0;
-
-	    for (let x=0; x<words.length; x++){
+        // loop through words array from dictionary file
+	      for (let x=0; x<words.length; x++){
 	      
-	      if (words[x].startsWith(nextChar, 1)) letterCount++;
-	    }
+	        if (words[x].startsWith(nextChar, 1)) letterCount++; // word is in the "apple": format
+	      }                                                      // so, start at second char
 
-	    console.log (`${nextChar} : ${letterCount}`);  
+        // print out word count of each letter in alphabet
+	      console.log (`${nextChar} : ${letterCount}`);  
       }
 
-	  search.searchFile(words);
+      // call function to search through the words array
+	    search.searchFile(words);
     }  
   });
 };
