@@ -1,3 +1,4 @@
+const saver = require('./saver.js');
 
 let searchFile = function(dict) {
 
@@ -8,8 +9,8 @@ let searchFile = function(dict) {
   console.log(`1: Exact match`);
   console.log(`2: Partial match`);
   console.log(`3: "Begins with" matches`);
-  console.log(`4: "Ends with" matches\n`);
-  console.log(`>>`);
+  console.log(`4: "Ends with" matches`);
+  console.log(`\n>>`);
 
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
@@ -102,6 +103,8 @@ let searchFile = function(dict) {
         matches.forEach(function(item){
       	  console.log(item);
         });
+
+	    saver.saveResults(matches.join('\n'));
       }
 	}	
   };
