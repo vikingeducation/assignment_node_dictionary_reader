@@ -1,4 +1,5 @@
 const fs = require('fs');
+const utils = require('./utils.js');
 
 let saveResults = function(results) {
 
@@ -11,8 +12,7 @@ let saveResults = function(results) {
   	data = data.trim();
 
     if (data === 'q') {
-      console.log('Goodbye.');
-      process.exit();
+      utils.sayGoodbye();
 
     } else {
     	
@@ -20,12 +20,11 @@ let saveResults = function(results) {
       process.stdin.removeListener('data', onData);
 
       if ( data === 'y') {
-        console.log('What filepath should we write results to?');
+        console.log('Please enter filename to save results to:');
         getFileName(results);
 
       } else {
-        console.log("Goodbye.");
-        process.exit();
+        utils.sayGoodbye();
 
       }
 	  }
@@ -49,20 +48,14 @@ let getFileName = function(results) {
     fs.open(path, 'wx', (err, fd) => {
 
 	    if (err) {
-
-	  	  // file exists, prompt for overwrite
+        // file exists, prompt for overwrite
 	  	  process.stdin.pause();
         process.stdin.removeAllListeners('data');
         fileOverwrite(results, path);
 
       } else {
         // save the data in file
-        fs.writeFile(path, results, 'utf8', (err) => {
-          if (err) console.log(err);
-
-          console.log('The file has been saved!');
-          process.exit();
-        });
+        utils.saveFile(path, results, 'The file has been saved!');
       }
     });
   });
@@ -84,7 +77,7 @@ let fileOverwrite = function (results, fileName) {
 
       data = data.trim();
 
-      if( data != 'y' && data != 'n') {
+      if (!['y', 'n'].includes(data)) {
           // error checking
           console.log('Please enter y/n');
           invalidInput = true;
@@ -94,15 +87,12 @@ let fileOverwrite = function (results, fileName) {
         process.stdin.removeAllListeners('data');
 
         if ( data === 'y'){
-          fs.writeFile(fileName, results, 'utf8', (err) => {
-            if (err) console.log(err);
+          // overwrite file with new results
+          utils.saveFile(fileName, results, 'File successfully overwritten!');
 
-            console.log('File successfully overwritten!');
-            process.exit();
-          });
         } else {
-          console.log('Goodbye!'); 
-          process.exit();
+          utils.sayGoodbye();
+
         }
       }
     });

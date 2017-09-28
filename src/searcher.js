@@ -1,4 +1,5 @@
 const saver = require('./saver.js');
+const utils = require('./utils.js');
 
 let searchFile = function(dict) {
 
@@ -20,14 +21,13 @@ let searchFile = function(dict) {
   	data = data.trim();
 
     if (data === 'q') {
-      console.log('Goodbye.');
-      process.exit();
+      utils.sayGoodbye();
 
     } else {
     
       let tempData = Number(parseInt(data));
 
-      if ( (tempData > 0) && (tempData <= 4) ) {
+      if ( utils.isInRange(1, 4, tempData)) {
 
     	  process.stdin.pause();
     	  process.stdin.removeListener('data', onData);
@@ -60,8 +60,7 @@ let searchFile = function(dict) {
       console.log(`Invalid input, please enter a word:`);
 
     } else if (word === 'q') {
-      console.log('Goodbye.');
-      process.exit();
+      utils.sayGoodbye();
 
     } else {
       process.stdin.pause();
@@ -75,23 +74,23 @@ let searchFile = function(dict) {
       // find matches
       switch (selectedSearch) {
       	case 1:
-      	  newDict.forEach(function(element){
-      	  	if (element === word) matches.push(element);
+      	  matches = newDict.filter(function(element){
+      	  	if (element === word) return element;
       	  });
       	  break;
       	case 2:
-      	  newDict.forEach(function(element){
-      	  	if (element.includes(word)) matches.push(element);
+      	  matches = newDict.filter(function(element){
+      	  	if (element.includes(word)) return element;
       	  });
       	  break;
       	case 3:
-      	  newDict.forEach(function(element){
-      	  	if (element.startsWith(word)) matches.push(element);
+      	  matches = newDict.filter(function(element){
+      	  	if (element.startsWith(word)) return element;
       	  });
       	  break;
       	case 4:
-      	  newDict.forEach(function(element){
-      	  	if (element.endsWith(word)) matches.push(element);
+      	  matches = newDict.filter(function(element){
+      	  	if (element.endsWith(word)) return element;
       	  });
       	  break;
       }

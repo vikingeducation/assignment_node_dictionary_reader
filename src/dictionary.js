@@ -4,7 +4,6 @@ const search = require('./searcher.js');
 let parseFile = function(file) {
 
   let path = `./data/${file}`;
-  let numWords = 0;
 
   process.stdin.pause();
 
@@ -23,7 +22,7 @@ let parseFile = function(file) {
 
 	    console.log('\nWord frequency by starting letter:');
 	  
-      // loop througgh alphabet string
+      // loop through alphabet string
 	    for(let i=0; i<str.length; i++) {
   
 	      let nextChar = str.charAt(i);
