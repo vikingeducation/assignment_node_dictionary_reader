@@ -1,5 +1,7 @@
 const fs = require('fs');
 const dictionary = require('./dictionary.js');
+const utils = require('./utils.js');
+
 
 let path = './data';
 let matches = [];   // array containing dictionary files
@@ -14,20 +16,27 @@ let loadFiles = function() {
 
     } else {
       // find all json files in directory
-      let regex =/\w+(.json)/g;
+      let regex =/\w+\.(json)/g;
       let match = regex.exec(data);
 
 	    console.log(`Select a dictionary to load:`);
 	    console.log(`============================`);
 
+      // get each match and pop off last array element 
+      // because outpur looks like this:
+      // dictionary.json, .json
+      // test.json, .json
       while (match) {
+        match.pop();
         matches.push(match);
         match = regex.exec(data);
       }
 
-      for (let i = 0; i < matches.length; i++) {
-        console.log( `${i+1}. ${matches[i][0]}` );
-      }
+      let num = 1;
+      matches.forEach( (file) => {
+        console.log( `${num}. ${file}` );  
+        num++;
+      });
 
       console.log(`\n>>`);
 	  }
@@ -44,15 +53,14 @@ let loadFiles = function() {
   	data = data.trim();
 
     if (data === 'q') {
-      console.log('Goodbye.');
-      process.exit();
+      utils.sayGoodbye();
 
     } else {
       	
       // convert user input of dictionary selection to number  
       let tempData = Number(parseInt(data));
 
-      if ( (tempData > 0) && (tempData <= matches.length) ) {
+      if ( utils.isInRange(1, matches.length, tempData) ) {
       	let fileName = matches[data-1][0];
 
     	  process.stdin.pause();
