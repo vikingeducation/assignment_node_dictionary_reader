@@ -1,14 +1,16 @@
 const fs = require('fs');
+const colorize = require('./colors.js');
 
 function getSummary(fileName) {
-  console.log(`Successfully loaded: ${fileName}`);
+  console.log('\n======================================');
+  console.log(`${colorize.green('Successfully loaded')}: ${fileName}`);
 
   process.stdin.resume();
   process.stdin.on('data', (input) => {
     input = input.trim();
 
     if (input === 'q') {
-      console.log('Goodbye');
+      console.log(`${colorize.yellow('Goodbye.')}`);
       process.exit();
     }
   });

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const getSummary = require('./dictionary.js');
+const colorize = require('./colors.js');
 
 function getJSON() {
   // get list of all files in data folder
@@ -10,6 +11,7 @@ function getJSON() {
       throw err;
     }
 
+    console.log('\n======================================');
     console.log('Select a dictionary to load:');
     getDictionaries(files)
   });
@@ -27,7 +29,7 @@ function getDictionaries(files) {
   });
 
   jsonFiles.forEach((file, idx) => {
-    console.log(`${idx + 1}: ${file}`);
+    console.log(`${colorize.green(idx + 1)}: ${file}`);
   });
 
 
@@ -36,13 +38,13 @@ function getDictionaries(files) {
     const idx = parseInt(input) - 1;
 
     if (input === 'q') {
-      console.log('Goodbye');
+      console.log(`${colorize.yellow('Goodbye.')}`);
       process.exit();
     } else if (idx <= jsonFiles.length - 1) {
       process.stdin.removeListener('data', filterDictionaries);
       getSummary(jsonFiles[idx]);
     } else {
-      console.log(`Invalid input: ${input}`);
+      console.log(`${colorize.red('Invalid input')}: ${input}`);
     }
   }
 
