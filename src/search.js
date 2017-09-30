@@ -1,4 +1,6 @@
 const fs = require('fs');
+const saveResults = require('./save-results.js');
+const colorize = require('./colors.js');
 
 
 function logThis(arr) {
@@ -52,6 +54,36 @@ function getWordsThatEndWith(words, endStr) {
   return wordsEndingWith;
 }
 
+function yesNoListener(input) {
+  input = input.trim();
+  process.removeListener('data', yesNoListener);
+
+  switch (input) {
+    case 'y':
+      console.log('\nWhat path should we write to?');
+      process.stdin.on('data', filePath);
+      break;
+    case 'n':
+      console.log('\nResults not saved');
+      process.exit();
+      break;
+    case 'q':
+      console.log('\nGoodbye.');
+      process.exit();
+      break;
+    default:
+      console.log(`\nInvalid input: ${input}`);
+  }
+}
+
+function filePath(path) {
+  path = path.trim();
+
+  saveResults.save(path, saveWords);
+}
+
+
+let saveWords;
 
 const search = {
   // exact match
@@ -68,9 +100,14 @@ const search = {
         console.log('No exact match found.');
       } else {
         const matches = exactMatchFilter(words, searchWord);
+        saveWords = matches;
 
         console.log(`\nFound ${matches.length} that matched:`)
         logThis(matches);
+
+        process.stdin.removeAllListeners('data');
+        console.log(`Do you want to save the results? ${colorize.green('y')}/${colorize.red('n')}? "q" to quit.`);
+        process.stdin.on('data', yesNoListener);
       }
     });
   },
@@ -85,9 +122,15 @@ const search = {
       const words = Object.keys(data);
 
       const partials = getPartialMatch(words, partialStr);
+      saveWords = partials;
       console.log(`\nFound ${partials.length} that partially matched with: ${partialStr}`)
 
       logThis(partials);
+
+      process.stdin.removeAllListeners('data');
+      console.log(`Do you want to save the results? ${colorize.green('y')}/${colorize.red('n')}? "q" to quit.`);
+      process.stdin.on('data', yesNoListener);
+
     });
   },
   // "Begins with" match
@@ -101,11 +144,16 @@ const search = {
       const words = Object.keys(data);
 
       const wordsBeginningWith = getWordsBeginningWith(words, searchStr);
+      saveWords = wordsBeginningWith;
       console.log(`\nFound ${wordsBeginningWith.length} that begins with "${searchStr}"`);
 
       if (wordsBeginningWith.length) {
         logThis(wordsBeginningWith);
       }
+
+      process.stdin.removeAllListeners('data');
+      console.log(`Do you want to save the results? ${colorize.green('y')}/${colorize.red('n')}? "q" to quit.`);
+      process.stdin.on('data', yesNoListener);
     })
   },
   // "Ends with" match
@@ -119,11 +167,16 @@ const search = {
       const words = Object.keys(data);
 
       const wordsThatEndWith = getWordsThatEndWith(words, endStr);
+      saveWords = wordsThatEndWith;
       console.log(`\nFound ${wordsThatEndWith.length} that ends with ${endStr}`);
 
       if (wordsThatEndWith) {
         logThis(wordsThatEndWith);
       }
+
+      process.stdin.removeAllListeners('data');
+      console.log(`Do you want to save the results? ${colorize.green('y')}/${colorize.red('n')}? "q" to quit.`);
+      process.stdin.on('data', yesNoListener);
     });
 
   },
