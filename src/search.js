@@ -56,7 +56,7 @@ function getWordsThatEndWith(words, endStr) {
 const search = {
   // exact match
   exactMatch: function(dictionaryName, searchWord) {
-    fs.readFile('../data/' + dictionaryName, 'utf8', (err, data) => {
+    fs.readFile('./data/' + dictionaryName, 'utf8', (err, data) => {
       if (err) {
         throw err;
       }
@@ -69,14 +69,14 @@ const search = {
       } else {
         const matches = exactMatchFilter(words, searchWord);
 
-        console.log(`Found ${matches.length} that matched:`)
+        console.log(`\nFound ${matches.length} that matched:`)
         logThis(matches);
       }
     });
   },
   // partial match
   partialMatch: function(dictionaryName, partialStr) {
-    fs.readFile('../data/' + dictionaryName, (err, data) => {
+    fs.readFile('./data/' + dictionaryName, (err, data) => {
       if (err) {
         throw err;
       }
@@ -85,14 +85,14 @@ const search = {
       const words = Object.keys(data);
 
       const partials = getPartialMatch(words, partialStr);
-      console.log(`Found ${partials.length} that partially matched with: ${partialStr}`)
+      console.log(`\nFound ${partials.length} that partially matched with: ${partialStr}`)
 
       logThis(partials);
     });
   },
   // "Begins with" match
   beginsWith: function(dictionaryName, searchStr) {
-    fs.readFile('../data/' + dictionaryName, (err, data) => {
+    fs.readFile('./data/' + dictionaryName, (err, data) => {
       if (err) {
         throw err;
       }
@@ -101,7 +101,7 @@ const search = {
       const words = Object.keys(data);
 
       const wordsBeginningWith = getWordsBeginningWith(words, searchStr);
-      console.log(`Found ${wordsBeginningWith.length} that begins with "${searchStr}"`);
+      console.log(`\nFound ${wordsBeginningWith.length} that begins with "${searchStr}"`);
 
       if (wordsBeginningWith.length) {
         logThis(wordsBeginningWith);
@@ -110,7 +110,7 @@ const search = {
   },
   // "Ends with" match
   endsWith: function(dictionaryName, endStr) {
-    fs.readFile('../data/' + dictionaryName, (err, data) => {
+    fs.readFile('./data/' + dictionaryName, (err, data) => {
       if (err) {
         throw err;
       }
@@ -119,7 +119,7 @@ const search = {
       const words = Object.keys(data);
 
       const wordsThatEndWith = getWordsThatEndWith(words, endStr);
-      console.log(`Found ${wordsThatEndWith.length} that ends with ${endStr}`);
+      console.log(`\nFound ${wordsThatEndWith.length} that ends with ${endStr}`);
 
       if (wordsThatEndWith) {
         logThis(wordsThatEndWith);
