@@ -1,9 +1,10 @@
 'use strict';
 
-var state;
-var next;
-
 const init = () => {
+
+  //manages *state* and *next* actions functions
+  let state; 
+  let next;
 
   const showMessage = (err, state) => {
     console.log(`\nState ${state}`);
@@ -35,14 +36,33 @@ const init = () => {
     process.exit();
   };
 
-  const one = () => {
-    state = 'one';
+  //
+  //if another state is needed, simply add them below
+  //
+  const three = () => {
+    state = 'three';
     next = exit;
     resumeEntry(state);
     process.stdin.on('data', handleInput);
   };
 
+  const two = () => {
+    state = 'two';
+    next = three;
+    resumeEntry(state);
+    process.stdin.on('data', handleInput);
+  };
+
+  const one = () => {
+    state = 'one';
+    next = two;
+    resumeEntry(state);
+    process.stdin.on('data', handleInput);
+  };
+
+  //start with state one
   one();
 }
 
+//start the app
 init();
