@@ -1,41 +1,42 @@
-const two = require('./two');
+'use strict';
 
-function one() {
-  // Start listening to STDIN
-  process.stdin.resume();
-  process.stdin.setEncoding('utf8');
+var state;
+var next;
 
+const init = () => {
 
-  // Inline function to handle message output
-  var showMessage = err => {
-    console.log('\nState one');
+  const showMessage = (err, state) => {
+    console.log(`\nState ${state}`);
     console.log('Type "next" to continue');
     if (err) {
-      console.error('err here: ' + err);
+      console.error(err);
     };
   };
-  // Display message
-  showMessage();
 
+  const resumeEntry = (state) => {
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+    showMessage(null, state);
+  };
 
-  // Handler for STDIN data event
-  var onData = data => {
+  const handleInput = data => {
     data = data.trim();
-    // If user input "next" let's go to the next state
     if (data === 'next') {
       process.stdin.pause();
-      //remove listener onData for data event
-      process.stdin.removeListener('data', onData);
-      two.exec();
+      process.stdin.removeListener('data', handleInput);
+      console.log('Goodbye!');
     } else {
-      // All other input is invalid
-      showMessage(`Invalid: ${ data }`);
+      showMessage(`Invalid: ${ data }`, state);
     }
   }  
-  // Set the listener called OnData, that listens for data event in stdin stream
-  process.stdin.on('data', onData);
 
+  const one = () => {
+    state = 'one';
+    resumeEntry(state);
+    process.stdin.on('data', handleInput);
+  }
 
+  one();
 }
-// Start the app
-one();
+
+init();
