@@ -24,17 +24,23 @@ const init = () => {
     if (data === 'next') {
       process.stdin.pause();
       process.stdin.removeListener('data', handleInput);
-      console.log('Goodbye!');
+      next();
     } else {
       showMessage(`Invalid: ${ data }`, state);
     }
   }  
 
+  const exit = () => {
+    console.log('Goodbye!');
+    process.exit();
+  };
+
   const one = () => {
     state = 'one';
+    next = exit;
     resumeEntry(state);
     process.stdin.on('data', handleInput);
-  }
+  };
 
   one();
 }
