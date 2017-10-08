@@ -1,17 +1,20 @@
 # assignment_node_dictionary_reader
 I CAN HAS SPELLZ IN "Node"? K THNX BYE
+-------
 
-==
 
-Usage: 
+Synopsis
+-------
+This application uses a command-line interface which loads in dictionary files and allows the user to perform various searches on it.
+
+Usage
+-----
 ```
 node index.js
 ```
 
-### Synopsis: 
-This application uses a command-line interface which loads in dictionary files and allows the user to perform various searches on it.
-
-### Highlights: 
+Highlights 
+-----
 - node file I/O, fs, process.stdin, process.stdout, etc
 - regex
 - modular design
@@ -21,4 +24,4 @@ This application uses a command-line interface which loads in dictionary files a
 - chalk package colorizing
 
 
-by Dennis C :+!:
+#####by Dennis C :+1:
