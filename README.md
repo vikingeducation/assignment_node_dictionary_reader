@@ -18,6 +18,7 @@ This application uses a command-line interface which loads in dictionary files a
 - CLI
 - JSON file manipulation
 - async programming
+- chalk package colorizing
 
 
 by Dennis C :+!:
