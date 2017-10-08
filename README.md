@@ -1,7 +1,7 @@
 # assignment_node_dictionary_reader
 I CAN HAS SPELLZ IN "Node"? K THNX BYE
--------
 
+==
 
 Synopsis
 -------
@@ -24,4 +24,4 @@ Highlights
 - chalk package colorizing
 
 
-#####by Dennis C :+1:
+##### by Dennis C :+1:
