@@ -1,0 +1,33 @@
+Welcome to the Node Dictionary Reader!
+Enter 'q' to quit
+Select Dictionary
+1 dictionary.json
+Successfully loaded undefined
+Word count: 28032
+Word frequency by starting letter:
+A: 1854
+B: 1422
+C: 2839
+D: 1704
+E: 1229
+F: 1195
+G: 863
+H: 921
+I: 1528
+J: 244
+K: 176
+L: 925
+M: 1553
+N: 562
+O: 697
+P: 2361
+Q: 149
+R: 1538
+S: 2997
+T: 1415
+U: 541
+V: 563
+W: 637
+X: 6
+Y: 74
+Z: 39
