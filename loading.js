@@ -76,7 +76,7 @@ function load() {
                 //Display Statistics
                 console.log("Successfully loaded: ", jsonFiles[data - 1]);
                 console.log("Word count: ", wordCount);
-                console.log(String(words));
+                console.log(words);
 
             });
         } else {
