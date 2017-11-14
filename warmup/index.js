@@ -76,6 +76,7 @@ function three(){
     // let's go to the next
     // state
     if (data === 'next') {
+      console.log('Goodbye');
       process.stdin.pause();
       process.stdin.removeListener('data', onData);
     }
