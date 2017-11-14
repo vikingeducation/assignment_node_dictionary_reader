@@ -56,12 +56,7 @@ function load() {
                 if (err) {
                     throw err;
                 }
-                console.log(data);
-            });
 
-            let readStream = fs.createReadStream(path, 'utf8');
-
-            readStream.on('data', (data) => {
                 let wordArr = data.split(' ');
 
                 let wordCount = data.split(' ').length;
@@ -69,17 +64,21 @@ function load() {
                 let words = {};
 
                 wordArr.forEach(element => {
-                    if (element.charAt(0).match(/[a-zA-z]/)) {
-                        words[element.charAt(0)] += 1;
+                    if (element.charAt(0).match(/^[a-zA-Z]/)) {
+                        if (words[element.charAt(0)]) {
+                            words[element.charAt(0)] += 1;
+                        } else {
+                            words[element.charAt(0)] = 1;
+                        }
                     }
                 })
-            });
-            
-             //Display Statistics
+
+                //Display Statistics
                 console.log("Successfully loaded: ", jsonFiles[data - 1]);
                 console.log("Word count: ", wordCount);
-                console.log(words);
+                console.log(String(words));
 
+            });
         } else {
             // All other input is invalid
             showMessage(`Invalid: ${ data }`);
