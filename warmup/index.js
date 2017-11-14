@@ -38,6 +38,13 @@ function one() {
     }
   };
 
+
+
+  // Set the listener
+  process.stdin.on("data", onData);
+}
+
+
   function two() {
     // Start listening to STDIN
     process.stdin.resume();
@@ -77,9 +84,10 @@ function one() {
         showMessage(`Invalid: ${data}`);
       }
     };
+    process.stdin.on("data", onData);
   }
 
-  function three() {
+function three() {
     // Start listening to STDIN
     process.stdin.resume();
     process.stdin.setEncoding("utf8");
@@ -117,11 +125,7 @@ function one() {
         showMessage(`Invalid: ${data}`);
       }
     };
+     process.stdin.on("data", onData);
   }
-
-  // Set the listener
-  process.stdin.on("data", onData);
-}
-
 // Start the app
 one();
