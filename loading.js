@@ -1,6 +1,9 @@
 var fs = require('fs');
+var _search = require('./searching');
 
 var path = './data';
+
+console.log(_search);
 
 function load() {
     // Start listening to STDIN
@@ -77,8 +80,30 @@ function load() {
                 console.log("Successfully loaded: ", jsonFiles[data - 1]);
                 console.log("Word count: ", wordCount);
                 console.log(words);
-
+                console.log("What kind of search?");
+                console.log('1: Exact search: ');
+                console.log('2: Partial search: ');
+                console.log('3: Begins with search: ');
+                console.log('4: Ends with search: ');
             });
+            
+        } else if (
+                switch(data){
+                  case "1":
+                    console.log(_search.exactMatch(data, wordArr));
+                    break;
+                  case "2":
+                    console.log(_search.partialMatch(data, wordArr));
+                    break;
+                  case "3":
+                    console.log(_search.beginsWith(data, wordArr));
+                    break;
+                  case "4":
+                    console.log(_search.endsWith(data, wordArr));
+                    break;
+                 }) {
+                     
+                 }
         } else {
             // All other input is invalid
             showMessage(`Invalid: ${ data }`);
@@ -92,3 +117,5 @@ function load() {
 
 //call
 load();
+
+module.exports = load;
