@@ -106,6 +106,7 @@ function start() {
   //determines if existing file
 
   let onSave = data => {
+    data = data.trim();
     let savePath = "./fileSaves/" + data;
     if (fs.existsSync(savePath)) {
       console.log("That file exists, overwrite? y/n?");
