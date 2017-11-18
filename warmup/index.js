@@ -1,4 +1,5 @@
 // Does node automatically assume that parameters are optional? RE: err in showMessage
+// Why am I having issues with the final console.log?
 
 function one() {
   // Start listening to STDIN
@@ -84,9 +85,9 @@ function three() {
   var onData = (data) => {
     data = data.trim();
     if(data === 'next') {
+      console.log('Goodbye');
       process.stdin.pause();
       process.stdin.removeListener('data', onData);
-      console.log('Goodbye');
     } else {
       showThirdMessage(`Invalid: ${ data }`);
     }
