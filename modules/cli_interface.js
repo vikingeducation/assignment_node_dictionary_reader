@@ -9,8 +9,12 @@ function cliInterface() {
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
 
+  console.log('Welcome to the Dictionary');
+  loader.displayDictionaries();
+
+
+
   function showMessage(err) {
-    console.log('Welcome to the Dictionary');
     console.log("Please enter a word or 'q' to quit");
     if (err) {
       console.error(err);

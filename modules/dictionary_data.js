@@ -1,16 +1,18 @@
 var dictionaryData = {
 
-  textPath: './data/dictionary.json',
+  // textPath: './data/dictionary.json',
+
   dictWords: function(data) {
     var dictionaryWords = Object.keys(data)
     return dictionaryWords
   },
+
   findSimilar: function(userInput, data) {
-    var regex = RegExp(userInput)
     var words = this.dictWords(data);
-    var matches = words.filter(function(word){ return regex.test(word)});
+    var matches = words.filter(function(word){ return word.includes(userInput)});
     return matches
   },
+
   displaySimilar: function(userInput, data) {
     console.log(`\nSorry, we don't know "${userInput}."`)
 
@@ -26,11 +28,11 @@ var dictionaryData = {
       console.log("Please enter another word or 'q' to quit.")
     }
   },
+
   displayDefinition: function(userInput, data) {
     console.log(`\nThe definition of "${userInput}":`);
     console.log(data[userInput]);
   }
-
 
 }; // dictionaryData
 
