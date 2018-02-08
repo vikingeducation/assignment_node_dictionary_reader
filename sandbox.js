@@ -2,7 +2,7 @@ var path = require('path');
 var fs = require('fs');
 const async = require('async');
 
-var obj = {dev: "/data/mini_dict.json", prod: "/data/dictionary.json"};
+var obj = {dev: "/data/kitties.json", prod: "/data/dictionary.json"};
 var entries = {};
 
 async.forEachOf(obj, (value, key, callback) => {

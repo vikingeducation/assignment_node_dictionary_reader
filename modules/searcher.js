@@ -4,9 +4,9 @@ var loader = require('./loader');
 
 function searcher(userInput){
   userInput = userInput.trim().toLowerCase();
-  var dictPath = loader.dictPath;
+  var dictPath = loader.selectedDict;
 
-  fs.readFile(dictPath, 'utf8', (err, data) => {
+  fs.readFile(`./data/${dictPath}`, 'utf8', (err, data) => {
       if (err) throw err;
       data = JSON.parse(data);
 
@@ -17,7 +17,6 @@ function searcher(userInput){
       } else {
 
         dictionaryData.displayDefinition(userInput, data);
-
       }
     });
 

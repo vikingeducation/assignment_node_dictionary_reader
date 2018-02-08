@@ -3,30 +3,33 @@ var path = require('path')
 
 var loader = {
 
+  selectedDict: '',
   dataPath: './data',
-  dictPath: './data/dictionary.json',
   dictionaryList: function(){
-    //   var list = {};
-    // fs.readdir(this.dataPath, (err, data) => {
-    //   if (err) {
-    //     throw err;
-    //   }
+    var dictFiles = ['dictionary.json', 'kitties.json'];
+    var list = {};
 
-    //   data.forEach(function(file, index) {
-    //     list[index + 1] = file;
-    //   });
-    //   // console.log(17);
-    //   // console.log(list);
-    // });
-    //   return list;
+    dictFiles.forEach(function(file, index) {
+      list[index + 1] = file;
+    });
+
+    return list;
   },
   displayDictionaries: function() {
     console.log("Please select a dictionary by entering its number");
-    console.log(25);
-    console.log(this.dictionaryList());
+    var list = this.dictionaryList();
 
+    for(var key in list){
+      console.log(`${key}. ${list[key]}`);
+    };
+  },// displayDictionaries
+
+  setDictionary: function(userInput) {
+    var list = this.dictionaryList();
+    this.selectedDict = list[userInput];
+    console.log(`Now using ${this.selectedDict}`);
   }
 
 }
-// console.log(loader.dictionaryList());
+
 module.exports = loader;

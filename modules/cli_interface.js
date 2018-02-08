@@ -14,21 +14,24 @@ function cliInterface() {
 
 
 
-  function showMessage(err) {
-    console.log("Please enter a word or 'q' to quit");
-    if (err) {
-      console.error(err);
-    }
-  };
+  // function showMessage(err) {
+  //   console.log("Please enter a word or 'q' to quit");
+  //   if (err) {
+  //     console.error(err);
+  //   }
+  // };
 
-  showMessage();
+  // showMessage();
 
   function onData(data) {
     var userInput = data.trim();
+    console.log("Please enter a word or 'q' to quit");
 
     if (userInput === 'q') {
       process.stdin.pause();
       process.stdin.removeListener('data', onData);
+    } else if (userInput === '1' || userInput === '2') {
+      loader.setDictionary(userInput);
     } else {
       searcher(userInput);
     }
