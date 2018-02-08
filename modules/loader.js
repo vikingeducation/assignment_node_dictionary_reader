@@ -27,9 +27,10 @@ var loader = {
   setDictionary: function(userInput) {
     var list = this.dictionaryList();
     this.selectedDict = list[userInput];
-    console.log(`Now using ${this.selectedDict}`);
+    var name = `Using Dictionary: ${this.selectedDict}`;
+    console.log(`${'-'.repeat(name.length)}\n${name}`);
   }
 
-}
+} // loader
 
 module.exports = loader;

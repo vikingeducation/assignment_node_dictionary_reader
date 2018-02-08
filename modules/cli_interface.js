@@ -12,28 +12,17 @@ function cliInterface() {
   console.log('Welcome to the Dictionary');
   loader.displayDictionaries();
 
-
-
-  // function showMessage(err) {
-  //   console.log("Please enter a word or 'q' to quit");
-  //   if (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  // showMessage();
-
   function onData(data) {
     var userInput = data.trim();
-    console.log("Please enter a word or 'q' to quit");
 
     if (userInput === 'q') {
       process.stdin.pause();
       process.stdin.removeListener('data', onData);
     } else if (userInput === '1' || userInput === '2') {
       loader.setDictionary(userInput);
+      searcher.stats(userInput);
     } else {
-      searcher(userInput);
+      searcher.words(userInput);
     }
   };
 

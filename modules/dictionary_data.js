@@ -3,8 +3,27 @@ var dictionaryData = {
   // textPath: './data/dictionary.json',
 
   dictWords: function(data) {
-    var dictionaryWords = Object.keys(data)
-    return dictionaryWords
+    var words = Object.keys(data)
+    return words
+  },
+
+  displayWordCount: function(data){
+    var wordCount = Object.keys(data).length
+    console.log(`Word Count: ${wordCount}`);
+  },
+
+  displayWordCountByLetter: function(data){
+    var words = Object.keys(data)
+    var letters = {}
+    words.forEach(function(word) {
+      if(letters[word.charAt(0)] === undefined) {
+        letters[word.charAt(0)] = 1
+      } else {
+        letters[word.charAt(0)] += 1
+      }
+    });
+    console.log('Word Count by Letter:');
+    console.log(letters);
   },
 
   findSimilar: function(userInput, data) {
