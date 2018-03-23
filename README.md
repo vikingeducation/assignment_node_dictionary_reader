@@ -1,5 +1,4 @@
-# assignment_node_dictionary_reader
-I CAN HAS SPELLZ IN "Node"? K THNX BYE
+# cli_node_dictionary_reader
 
 
 Gregory Alford
